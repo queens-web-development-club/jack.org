@@ -2,7 +2,6 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
-import Disclaimer from "@/components/Disclaimer";
 
 export default function Home() {
   const [disclaimer, setDisclaimer] = React.useState(false)
@@ -42,10 +41,17 @@ export default function Home() {
         >
           Learn More
         </motion.button>
-      </div>
-      {disclaimer && <Disclaimer 
-        handleDisclaimerClick={handleDisclaimerClick}
-      />}
+      </div> 
+      {disclaimer && <div 
+        className="font-montserrat bg-[#f05814] fixed w-[100dvw] text-white text-[24px] p-4"
+      >
+        <div className="w-[80%]">
+          This is not a site for personal disclosure of mental health distress,
+          suicidal thoughts or behaviours. If you are in crisis, please
+          <span> call 911 </span>
+          or go to your nearest emergency department for assistance.
+        </div>
+      </div>}
     </main>
   );
 }

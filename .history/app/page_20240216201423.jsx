@@ -1,23 +1,10 @@
-"use client";
 import Image from "next/image";
-import React from "react";
 import { motion } from "framer-motion";
-import Disclaimer from "@/components/Disclaimer";
 
 export default function Home() {
-  const [disclaimer, setDisclaimer] = React.useState(false)
-
-  React.useEffect(() => {
-    setDisclaimer(true)
-  }, []);
-
-  function handleDisclaimerClick() {
-    setDisclaimer(false)
-  }
-
   return (
     <main className="bg-[#5f81a0] h-[100dvh] font-montserrat overflow-auto">
-      <div className="mt-[151px] text-[56px] text-[#ffffff] font-bold w-[80%] mx-auto leading-[70px]">
+      <div className="mt-[201px] text-[56px] text-[#ffffff] font-bold w-[80%] mx-auto leading-[70px]">
         <span className="text-[#f05814]">Mental Health</span> advocates<br />
         at Queen's
         <p className="text-[28px] font-normal leading-[40px] mt-[25px]">
@@ -35,17 +22,11 @@ export default function Home() {
             scale: 1.1,
             transition: {duration: 0.25},
           }}
-          whileTap={{
-            scale: 0.9,
-            transition: {duration: 0.25},
-          }}
         >
           Learn More
         </motion.button>
-      </div>
-      {disclaimer && <Disclaimer 
-        handleDisclaimerClick={handleDisclaimerClick}
-      />}
+
+      </div> 
     </main>
   );
 }

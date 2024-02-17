@@ -14,7 +14,6 @@ module.exports = {
       },
       fontFamily: {
         poppin: ["Poppins"],
-        montserrat: ['Montserrat'],
       },
     },
   },

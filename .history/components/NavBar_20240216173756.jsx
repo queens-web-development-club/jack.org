@@ -41,8 +41,8 @@ export default function NavBar() {
   }, [navData]);
 
   return (
-    <nav className="flex justify-center h-[100px] bg-[#202835]">
-      <div className="flex w-[80%] h-1/1">
+    <nav className="h-[100px] bg-[#202835]">
+      <div className="flex gap=[6.5rem] w-[80%] mx-auto items-center">
         <div className="w-[25%]">{logo}</div>
         <div className="flex-1 px-[3rem]">{links}</div>
       </div>
