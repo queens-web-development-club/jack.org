@@ -1,49 +1,41 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { navData } from "@/data/navData";
-import { useMemo } from "react";
 
 export default function NavBar() {
-  // You guys don't have to do this, but basically what the useMemo does is cache everything 
-  // so it doesn't have to rerender the content every single time, makes the app more optimized, 
-  // but since this is such a small component, it really doesn't matter, I'm just doing this for testing
 
-  const logo = useMemo(
-    () => (
-      <Link href="/">
-        <Image
-          src="logo.svg"
-          width={0}
-          height={0}
-          className="w-full pt-[1rem] h-full"
-          alt="Jack.org"
-          sizes="100vw"
-        />
-      </Link>
-    ),
-    []
+  const logo = (
+    <Link href="/" className="flex">
+      <Image
+        src="logo.svg"
+        width={288}
+        height={61}
+        className="pt-[1rem]"
+        alt="Jack.org"
+        sizes="100vw"
+      />
+    </Link>
   );
 
-  const links = useMemo(() => {
-    return (
-      <ul className="flex h-full items-center font-bold text-[1.3rem] text-white">
-        {navData.map((item, key) => (
-          <li key={key} className="hover:bg-orange-600 flex-1 h-full flex justify-center items-center">
-            <Link href={item.link}>
-              {item.text}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    );
-  }, [navData]);
+  const links = (
+    <ul className="flex h-full items-center font-bold text-[1.3rem] text-white">
+      {navData.map((item, key) => (
+        <li
+          key={key}
+          className="hover:bg-orange-600 flex-1 h-full flex justify-center items-center"
+        >
+          <Link href={item.link}>{item.text}</Link>
+        </li>
+      ))}
+    </ul>
+  );
 
   return (
-    <nav className="flex h-[100px] bg-[#202835] gap-[6.5rem]">
-      <div className="w-[25%] pl-[3rem]">{logo}</div>
-      <div className="flex-1 px-[3rem]">{links}</div>
+    <nav className="flex justify-center h-[100px] bg-[#202835]">
+      <div className="flex w-[85%]">
+        {logo}
+        <div className="flex-1 ml-[5rem]">{links}</div>
+      </div>
     </nav>
   );
 }
