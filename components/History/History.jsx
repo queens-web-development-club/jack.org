@@ -3,7 +3,7 @@ export default function History() {
   const historyData = [
     {
       year: 2010,
-      text: "Jack Windeler dies by suicide in his first year at Queen&apos;s. Jack&apos;s parents Eric and Sandra start The Jack Project initiative with Kid&apos;s Help Phone",
+      text: "Jack Windeler dies by suicide in his first year at Queen's. Jack's parents Eric and Sandra start The Jack Project initiative with Kid's Help Phone",
     },
     { year: 2010, text: "hello" },
     { year: 2010, text: "hello" },

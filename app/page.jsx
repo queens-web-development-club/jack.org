@@ -1,12 +1,13 @@
 import Facts from "@/components/History/Facts";
 import Disclaimer from "@/components/Buttons/Disclaimer";
 import LearnButton from "@/components/Buttons/LearnButton";
+import Mission from "@/components/Mission/Mission";
 
 export default function Home() {
   return (
     <main>
-      <section className="bg-[#5f81a0] h-[calc(100dvh-100px)] font-montserrat overflow-auto">
-        <div className="mt-[151px] text-[56px] text-[#ffffff] font-bold w-[80%] mx-auto leading-[70px]">
+      <section className="bg-[url('/A-67.png')] bg-cover h-[calc(100dvh-100px)] font-montserrat overflow-auto flex" style={{ backgroundPosition: "center -30px" }}>
+        <div className="mt-[151px] text-[56px] text-[#ffffff] font-bold w-[85%] mx-auto leading-[70px]">
           <span className="text-[#f05814]">Mental Health</span> advocates
           <br />
           at Queen&apos;s
@@ -21,6 +22,7 @@ export default function Home() {
         <Disclaimer />
       </section>
       <Facts />
+      <Mission />
     </main>
   );
 }
