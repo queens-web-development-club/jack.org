@@ -19,4 +19,4 @@ const whatWeDo = [
   },
 ];
 
-export { missionData, whatWeDo};
+export { missionData, whatWeDo };

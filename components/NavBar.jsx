@@ -5,7 +5,7 @@ import { navData } from "@/data/navData";
 export default function NavBar() {
 
   const logo = (
-    <Link href="/" className="flex">
+    <Link href="/" className="flex items-center">
       <Image
         src="logo.svg"
         width={288}
