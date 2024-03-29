@@ -1,10 +1,15 @@
+// ig Anthony finished this component already so, this component is not entirely finished or needed
+// (doesn't display nicely on mobile screens)
+// we can just scrap this 
+
+
 import Image from "next/image";
 
 export default function CoPresCard(props) {
   return (
-    <div className="w-4/5 border mx-auto p-4 rounded-[2.5rem] bg-white flex gap-4 font-montserrat">
+    <div className="border mx-auto p-4 rounded-[2.5rem] bg-white flex items-center gap-4 font-montserrat text-left">
         <Image
-          className="w-[30%]"
+          className="w-[30%] "
           src="/sadie.png"
           alt="Sadie Hamilton"
           width={300}
@@ -12,16 +17,16 @@ export default function CoPresCard(props) {
         />
         <div className="text-black">
           <h1
-            className="text-3xl"
+            className="lg:text-4xl font-bold my-2"
           >
             Sadie Hamilton
           </h1>
           <p
-            className="font-montserrat text-[#5E5E5E] text-lg font-light"
+            className="font-montserrat text-[#5E5E5E] lg:text-xl md:text-md font-light my-2"
           >
             Co-President - Members and Marketing
           </p>
-          <p className="text-[clamp(irem, 2.5vw, 2rem)]">
+          <p className="lg:text-xl md:text-sm">
           Sadie is a fourth year Kinesiology student at Queen&apos;s. 
           Her passion for mental health advocacy sparked and has continued 
           to grow since joining Jack.org Queen&apos;s Chapter in her first year. 
