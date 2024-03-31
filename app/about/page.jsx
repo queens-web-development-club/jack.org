@@ -29,6 +29,9 @@ export default function About() {
         <div className="">
           <Examples />
         </div>
+        <main className="bg-[#2F405B] min-h-screen px-[10%] py-[5%]">
+          <TeamCard />
+        </main>
       </div>
     </div>
   )
