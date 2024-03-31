@@ -5,8 +5,11 @@ import Mission from "@/components/Mission/Mission";
 
 export default function Home() {
   return (
-    <main>
-      <section className="bg-[url('/A-67.png')] bg-cover h-[calc(100dvh-100px)] font-montserrat overflow-auto flex" style={{ backgroundPosition: "center -30px" }}>
+    <main className="bg-[#202835]">
+      <section
+        className="bg-[url('/A-67.png')] bg-cover h-[calc(100dvh-100px)] font-montserrat overflow-auto flex"
+        style={{ backgroundPosition: "center -30px" }}
+      >
         <div className="mt-[151px] text-[56px] text-[#ffffff] font-bold w-[85%] mx-auto leading-[70px]">
           <span className="text-[#f05814]">Mental Health</span> advocates
           <br />
@@ -23,6 +26,7 @@ export default function Home() {
       </section>
       <Facts />
       <Mission />
+      <div className="h-[100px]"/>
     </main>
   );
 }

@@ -17,7 +17,7 @@ export default function Footer() {
         </p>
       </div>
 
-      <div className="w-1/3 text-right">
+      <div className="w-1/3 items-end flex flex-col">
         <h1 className="font-bold text-3xl mb-4">Social Media</h1>
 
         <div className="w-fit flex items-center gap-4 float-right">

@@ -3,7 +3,7 @@ import { whatWeDo } from "@/data/missionData";
 
 export default function WhatWeDo() {
   return (
-    <div className="border-4 font-montserrat text-white w-[85%] mx-auto bg-[#202835] p-8 mb-16">
+    <div className="border-4 font-montserrat text-white w-[85%] mx-auto bg-[#202835] p-8">
       <h1 className="text-5xl font-montserrat text-center font-bold text-[#22B1E9] mb-8">
         What We Do
       </h1>
@@ -15,7 +15,6 @@ export default function WhatWeDo() {
           </div>
         ))}
       </div>
-
       <div className="flex h-[120px]">
         {Array.from({ length: 3 }).map((_, key) => (
           <div className="flex justify-center flex-1" key={key}>
