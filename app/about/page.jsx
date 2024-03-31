@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import teamimage from "../../public/team.jpg";
 import Examples from "@/components/about/Examples";
+import TeamCard from "@/components/about/TeamCard";
 
 export default function About() {
   return (
