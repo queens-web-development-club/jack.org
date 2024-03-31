@@ -5,11 +5,22 @@ export default function History() {
       year: 2010,
       text: "Jack Windeler dies by suicide in his first year at Queen's. Jack's parents Eric and Sandra start The Jack Project initiative with Kid's Help Phone",
     },
-    { year: 2010, text: "hello" },
-    { year: 2010, text: "hello" },
-    { year: 2010, text: "hello" },
-    { year: 2010, text: "hello" },
-    { year: 2010, text: "hello" },
+    {
+      year: 2012,
+      text: "The Jack Project moves to Queen’s, working more directly with young leaders.",
+    },
+    {
+      year: 2013,
+      text: "The Jack Project rebrands as Jack.org, becoming fully independent from Kid’s Help Phone",
+    },
+    {
+      year: 2014,
+      text: "Jack.org chapters program launch, with Queen’s spearheading the movement.",
+    },
+    {
+      year: 2016,
+      text: "Jack.org Queen’s Chapter hosts our very first Summit.",
+    },
   ];
   return (
     <section className="flex flex-col justify-center items-center mt-[3rem]">
