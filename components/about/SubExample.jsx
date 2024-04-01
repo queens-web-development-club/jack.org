@@ -13,8 +13,8 @@ export default function SubExample({ listInfo, image }) {
     offset: ["start end", "end start"]
   })
   
-  const opacity = useTransform(scrollYProgress, [0.1, 0.3, 0.65, 0.9], [0, 1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.3, 0.65, 1], [0.2, 1, 1, 0.2]);
+  const opacity = useTransform(scrollYProgress, [0.1, 0.3, 0.75, 0.9], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.75, 1], [0.2, 1, 1, 0.2]);
 
   const bulletPoints = listInfo.map((data) => {
     return <li>{data}</li>

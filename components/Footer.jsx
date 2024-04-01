@@ -2,26 +2,26 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <div className="bg-[#363636] flex flex-col xl:flex-row justify-between p-8 text-white font-montserrat">
+    <div className="bg-[#363636] flex flex-col lg:flex-row justify-between p-8 text-white font-montserrat">
 
-      <div className="xl:w-1/2 w-fit">
+      <div className="lg:w-1/2 w-fit mx-auto lg:ml-0">
         <Image
           src="logo.svg"
-          // className="md:1/5 lg:w-1/3 xl:w-full"
+          className="mx-auto lg:ml-0"
           alt="jack.org logo"
           width={446}
           height={95}
         />
-        <p className="mt-3 text-[0.5rem] lg:text-xl sm:text-sm tracking-wider">This is not a site for personal disclosure of suicidal thoughts or behaviours.
+        <p className="mt-3 text-sm lg:text-xl text-center lg:text-left tracking-wider">This is not a site for personal disclosure of suicidal thoughts or behaviours.
           If you are in crisis, please <span className="font-bold text-[#22B1E9]">call 911</span> or go to
-          youre nearest emergency department for assistance.
+          your nearest emergency department for assistance.
         </p>
       </div>
 
-      <div className="xl:w-fit mt-3 items-end flex flex-col float-right">
-        <h1 className="font-bold text-xl lg:text-4xl md:text-2xl xl:mb-4 mt:2">Social Media</h1>
+      <div className="xl:w-fit mt-3 items-end flex flex-col">
+        <h1 className="font-bold text-xl lg:text-4xl md:text-2xl mx-auto lg:mr-0 xl:mb-4">Social Media</h1>
 
-        <div className="w-fit flex items-center lg:gap-4 gap-2 xl:float-right xl:mt-0 mt-3">
+        <div className="w-fit flex items-center lg:gap-4 gap-2 mx-auto lg:mr-0 sm:float-right xl:mt-0 mt-3">
           <Image
             className="w-fit lg:w-[28px] w-[15px]"
             src="instaIcon.svg"
@@ -32,7 +32,7 @@ export default function Footer() {
           <a className="hover:underline lg:text-xl sm:text-sm sm:w-full text-xs" href="https://www.instagram.com/jack.orgqueenschapter/?hl=en">@jack.orgqueenschapter</a>
         </div>
 
-        <div className="w-fit flex items-center lg:gap-4 gap-2 xl:float-right mt-3">
+        <div className="w-fit flex items-center lg:gap-4 gap-2 mx-auto lg:mr-0 sm:float-right mt-3">
           <Image
             className="w-fit lg:w-[28px] w-[15px]"
             src="tiktokIcon.svg"
@@ -43,7 +43,7 @@ export default function Footer() {
           <a className="hover:underline lg:text-xl sm:text-sm sm:w-full text-xs" href="https://www.tiktok.com/@jack.orgqueenschapter">@jack.orgqueenschapter</a>
         </div>
 
-        <div className="w-fit flex items-center lg:gap-4 gap-2 float-right mt-2">
+        <div className="w-fit flex items-center lg:gap-4 gap-2 mx-auto lg:mr-0 float-right mt-2">
           <Image
             className="w-fit lg:w-[28px] w-[15px]"
             src="emailIcon.svg"
