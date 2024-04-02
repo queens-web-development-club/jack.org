@@ -5,8 +5,11 @@ import Link from "next/link";
 import { navData } from "@/data/navData";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
+import useWindowSize from "@/hooks/useWindowSize";
 
 export default function NavBar() {
+  const { width } = useWindowSize();
+
   const logo = (
     <Link href="/" className="flex items-center">
       <Image
@@ -45,11 +48,30 @@ export default function NavBar() {
     </>
   );
 
+  const deskLinks = (
+    <ul className="flex h-full items-center font-bold text-[1rem] 2xl:text-[1.3rem] text-white">
+      {navData.map((item, key) => (
+        <li
+          key={key}
+          className="hover:bg-orange-600 flex-1 h-full flex justify-center items-center"
+        >
+          <Link href={item.link}>{item.text}</Link>
+        </li>
+      ))}
+    </ul>
+  );
+
   return (
     <nav className="flex justify-center h-[100px] bg-[#202835]">
       <div className="flex w-[85%]">
         {logo}
-        <div className="flex-1 ml-[5rem] flex items-center justify-end">{links}</div>
+        {width > 1400 ? (
+          <div className="flex-1 ml-[5rem]">{deskLinks}</div>
+        ) : (
+          <div className="flex-1 ml-[5rem] flex items-center justify-end">
+            {links}
+          </div>
+        )}
       </div>
     </nav>
   );

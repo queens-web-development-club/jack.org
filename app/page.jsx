@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className="bg-[#202835]">
       <section
-        className="bg-[url('/A-67.png')] bg-cover h-[calc(100dvh-100px)] font-montserrat overflow-auto flex"
+        className="bg-[url('/A-67.png')] bg-cover h-[calc(100dvh-100px)] font-montserrat overflow-auto flex bg-no-repeat"
         style={{ backgroundPosition: "center -30px" }}
       >
         <div className="mt-[151px] text-[56px] text-[#ffffff] font-bold w-[85%] mx-auto leading-[70px]">
@@ -26,7 +26,7 @@ export default function Home() {
       </section>
       <Facts />
       <Mission />
-      <div className="h-[100px]"/>
+      <div className="h-[100px]" />
     </main>
   );
 }
