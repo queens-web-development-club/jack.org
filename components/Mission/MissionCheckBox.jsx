@@ -14,7 +14,7 @@ export default function MissionCheckBox(props) {
   }
 
   return (
-    <div className="flex w-1/1 gap-6 my-10 items-center"
+    <div className="flex w-1/1 gap-6 my-4 xl:my-8 items-center"
       onMouseEnter={handleFadeIn}
       onMouseLeave={handleFadeOut}
     >
