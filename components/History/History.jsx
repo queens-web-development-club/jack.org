@@ -24,10 +24,10 @@ export default function History() {
   ];
   return (
     <section className="flex flex-col justify-center items-center mt-[3rem]">
-      <h2 className="text-[3rem] font-bold text-white">
+      <h2 className="text-[2rem] xl:text-[3rem] font-bold text-white text-center">
         History of Jack.org at Queen&apos;s
       </h2>
-      <div className="my-[2rem]">
+      <div className="my-[2rem] max-md:hidden">
         {historyData.map((item, key) => (
           <div
             key={key}
@@ -38,6 +38,21 @@ export default function History() {
                 key % 2 === 0 ? "left-0 text-right" : "right-0"
               }`}
             >
+              <h3 className="text-[2rem] text-[#22B1E9] font-semibold">
+                {item.year}
+              </h3>
+              <p className="text-white">{item.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="md:hidden flex flex-col justify-center items-center gap-[1.5rem] mt-[3rem]">
+        {historyData.map((item, key) => (
+          <div
+            key={key}
+            className="flex relative h-[20vh] w-[80%] bg-center items-center justify-center text-center"
+          >
+            <div>
               <h3 className="text-[2rem] text-[#22B1E9] font-semibold">
                 {item.year}
               </h3>

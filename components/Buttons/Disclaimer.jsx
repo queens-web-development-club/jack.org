@@ -16,7 +16,7 @@ export default function Disclaimer() {
 
   return (
     <div
-      className={`flex items-center font-montserrat bg-[#f05814] fixed w-[35dvw] text-white bottom-3 right-3 rounded-md z-[100] ${
+      className={`flex items-center font-montserrat bg-[#f05814] fixed w-[75%] md:w-[35dvw] text-white bottom-3 right-3 rounded-md z-[100] ${
         !disclaimer && "hidden"
       }`}
     >
