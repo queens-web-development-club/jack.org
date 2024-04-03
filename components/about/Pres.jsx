@@ -16,7 +16,7 @@ export default function Pres({ num, item }) {
           className="rounded-3xl max-lg:mx-auto max-lg:mb-[1rem]"
         />
       )}
-      {num % 2 !== 0 && (
+      {num % 2 !== 0 && width < 1024 && (
         <Image
           src={item.image}
           alt={item.name}

@@ -19,7 +19,7 @@ export default function Facts() {
           attempt suicides each year
         </p>
         <div className="flex items-center justify-center max-xl:flex-col">
-          <p className="text-[4rem] text-[#22B1E9]">35%</p>
+          <p className="text-[3rem] xl:text-[4rem] text-[#22B1E9]">35%</p>
           <p className="text-2xl xl:w-[35ch]">
             of University students meet the diagnostic criteria for at least one
             mental illness
