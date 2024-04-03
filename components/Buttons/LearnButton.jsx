@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function LearnButton() {
   return (
     <motion.button
-      className="border-[#22B1E9] border-4 border-solid font-semibold text-[28px] px-12 mt-[50px]"
+      className="border-[#22B1E9] border-4 border-solid font-semibold text-xl sm:text-2xl sm:py-4 sm:px-12 py-2 px-6"
       initial={{ scale: 1 }}
       whileHover={{
         scale: 1.1,
