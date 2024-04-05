@@ -12,18 +12,22 @@ export default function Examples() {
         <SubExample
           listInfo={exampleData.listData[0]}
           image={exampleData.images[0]}
+          title="Wait Times At Student Wellness"
         />
         <SubExample
           listInfo={exampleData.listData[1]}
           image={exampleData.images[1]}
+          title="Feeling Isolated In Our Community"
         />
         <SubExample
           listInfo={exampleData.listData[2]}
           image={exampleData.images[2]}
+          title="Stigma Around Accessing Mental Health Care"
         />
         <SubExample
           listInfo={exampleData.listData[3]}
           image={exampleData.images[3]}
+          title="Negative Work-Life Balance Influence"
         />
       </div>
     </div>
