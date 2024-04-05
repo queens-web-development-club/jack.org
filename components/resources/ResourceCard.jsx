@@ -27,7 +27,13 @@ export default function ResourceCard({ image, text, contact, subtitle }) {
   }
 
   return (
-    <div className="border-4 lg:m-8 md:m-4 sm:w-[35%] sm:m-2 lg:w-[28%] xs:w-1/2 w-4/5 m-4 mx-auto aspect-square bg-cover">
+    <motion.div 
+      className="border-4 lg:m-8 md:m-4 sm:w-[35%] sm:m-2 lg:w-[28%] xs:w-1/2 w-4/5 m-4 mx-auto aspect-square bg-cover"
+      whileHover={{
+        scale: 1.05,
+        transition: { duration: 0.25 }
+      }}
+    >
       <div className="border-4 border-black h-full w-full relative">
         <motion.div
           className="w-full h-full bg-cover bg-center"
@@ -66,6 +72,6 @@ export default function ResourceCard({ image, text, contact, subtitle }) {
           </p>}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
