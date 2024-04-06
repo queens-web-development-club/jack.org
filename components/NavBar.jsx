@@ -28,7 +28,7 @@ export default function NavBar() {
   const links = (
     <>
       <GiHamburgerMenu
-        className="text-[#F05814] text-[3rem]"
+        className="text-[#F05814] text-[3rem] hover:text-[#22B1E9]"
         onClick={() => setOpen(!open)}
       />
       {open && (
