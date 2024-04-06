@@ -12,11 +12,11 @@ export default function Contact() {
       .sendForm('service_cfmmnlp', 'template_fmvts7a', form.current, '2qeaMXLo7xFUpCTe0')
       .then(
         (result) => {
-          console.log('SUCCESS!', result.text);
+          alert('Your message was successfully sent!', result.text);
           // Optionally reset the form, show a success message, etc.
         },
         (error) => {
-          console.log('FAILED...', error.text);
+          alert('Failed...', error.text);
           // Optionally handle the error, show an error message, etc.
         },
       );
@@ -40,13 +40,13 @@ export default function Contact() {
             <div class="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5 mx-8 md:mx-0 lg:mx-0">
               
               <input class="w-full bg-[#E3E3E3] text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                  type="text" name="user_name" placeholder="First Name*" />
+                  type="text" name="from_name" placeholder="First Name*" />
               <input class="w-full bg-[#E3E3E3] text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                  type="text" placeholder="Last Name*" />
+                  type="text" name="from_last_name"  placeholder="Last Name*" />
               <input class="w-full bg-[#E3E3E3] text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                   type="email" name="user_email" placeholder="Email*" />
               <input class="w-full bg-[#E3E3E3] text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                  type="number" placeholder="Phone*" />
+                  type="number" name="user_phone" placeholder="Phone*" />
             </div>
             <div class="my-4 mx-8 md:mx-0 lg:mx-0">
               <textarea placeholder="Message*" name="message" class="w-full h-64 bg-[#E3E3E3] text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"></textarea>
