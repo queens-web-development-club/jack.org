@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import teamimage from "../../public/team.jpg";
+import teamimage from "../../public/team.png";
 import Examples from "@/components/about/Examples";
 import TeamCard from "@/components/about/TeamCard";
 

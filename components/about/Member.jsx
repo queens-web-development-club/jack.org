@@ -24,5 +24,5 @@ export default function Member({ item, title}) {
         ))}
       </div>
     </section>
-  );
+  );            
 }
