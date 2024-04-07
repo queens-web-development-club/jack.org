@@ -1,8 +1,9 @@
 import React from "react";
+import Image from "next/image";
 import { missionData } from "@/data/missionData";
 import MissionCheckBox from "./MissionCheckBox";
 import WhatWeDo from "./WhatWeDo";
-
+import members from "../../public/membersimage.png";
 export default function Mission() {
   const checkBoxes = missionData.map((data, key) => {
     return <MissionCheckBox key={key} text={data} />;
@@ -10,10 +11,15 @@ export default function Mission() {
 
   return (
     <div className="bg-[#202835]">
-      <div className="flex-row md:flex gap-8 w-[85%] py-24 mx-auto">
-        <div className="mb-8 w-full md:w-1/2 h-[525px] mx-auto border text-white shrink-0">
-          image gallery will go here ig
-        </div>
+      <div className="flex flex-col md:flex-row gap-8 w-[85%] py-24 mx-auto">
+        <div className="w-3/4 h-3/4">
+        <Image
+        src={members}
+        width={800}
+        height={200}
+        className="mb-8 w-full h-1/2 mx-auto border text-white "
+      />
+      </div>
         <div className="font-montserrat text-white">
           <h1 className="text-4xl pb-4 mb-4 font-bold h-fit border-b-2 border-b-solid border-b-white">
             Our Mission
