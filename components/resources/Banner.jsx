@@ -6,6 +6,7 @@ export default function Banner({image}) {
     <div className="py-2">
       <Image
         src={image}
+        alt="Image"
         className="w-full"
         width={100}
         height={100}

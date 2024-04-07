@@ -15,6 +15,7 @@ export default function Mission() {
         <div className="w-3/4 h-3/4">
         <Image
         src={members}
+        alt="Members"
         width={800}
         height={200}
         className="mb-8 w-full h-1/2 mx-auto border text-white "
