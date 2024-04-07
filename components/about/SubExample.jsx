@@ -5,7 +5,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-export default function SubExample({ listInfo, image }) {
+export default function SubExample({ title, listInfo, image }) {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -44,7 +44,7 @@ export default function SubExample({ listInfo, image }) {
         className="mx-auto w-fit pb-4 h-1/5"
       ></Image>
       <h1 className="font-montserrat text-white font-semibold text-2xl">
-        Wait Times At Student Wellness
+        {title}
       </h1>
       <div>
         <h2 className="font-montserrat text-left text-white pt-8 font-semibold text-lg">

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Banner({image}) {
   return (
-    <div>
+    <div className="py-2">
       <Image
         src={image}
         className="w-full"
