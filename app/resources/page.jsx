@@ -267,7 +267,7 @@ export default function Resources() {
             animated="Learn how to help someone access professional and community resources."
           />
           <TipsCard 
-            title="..."
+            title="6"
             bold="EARN YOUR BE THERE CERTIFICATE"
             link={{
               'href': "https://betherecertificate.org",
