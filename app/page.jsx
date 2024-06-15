@@ -7,10 +7,13 @@ export default function Home() {
   return (
     <main className="bg-[#202835]">
       <section
-        className="bg-[url('/A-67.png')] bg-cover min-h-[calc(100dvh-100px)] font-montserrat overflow-auto flex bg-no-repeat"
+        className="relative bg-[url('/team.jpg')] bg-cover min-h-[calc(100dvh-100px)] font-montserrat overflow-auto flex bg-no-repeat"
         style={{ backgroundPosition: "center -30px" }}
       >
-        <div className="mt-[2rem] xl:mt-[151px] text-4xl sm:text-6xl text-[#ffffff] font-bold w-[85%] mx-auto h-full">
+        {/* Blue Overlay */}
+        <div className="absolute inset-0 bg-[#013E76] opacity-70 z-0" />
+
+        <div className="relative z-10 mt-[2rem] xl:mt-[151px] text-4xl sm:text-6xl text-[#ffffff] font-bold w-[85%] mx-auto h-full">
           <span className="text-[#f05814]">Mental Health</span> advocates
           <br />
           at Queen&apos;s

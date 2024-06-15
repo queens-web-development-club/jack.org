@@ -66,7 +66,7 @@ export default function TipsCard({ title, bold, notBold, animated, link }) {
         )}
         {link && (
           <Link
-            className="text-black font-base sm:text-sm absolute top-1/2 text-base md:text-lg lg:text-xl hover:underline"
+            className="text-black font-base sm:text-sm absolute top-1/2 text-base md:text-lg lg:text-xl hover:underline opacity-0"
             ref={linkRef}
             href={link.href}
             target="_blank"

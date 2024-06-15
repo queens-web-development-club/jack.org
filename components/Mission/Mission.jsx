@@ -13,14 +13,15 @@ export default function Mission() {
     <div className="bg-[#202835]">
       <div className="flex flex-col md:flex-row gap-8 w-[85%] py-24 mx-auto">
         <div className="w-3/4 h-3/4">
-        <Image
-        src={members}
-        alt="Members"
-        width={800}
-        height={200}
-        className="mb-8 w-full h-1/2 mx-auto border text-white "
-      />
-      </div>
+          <Image
+            sizes="(min-width: 1900px) 698px, (min-width: 1280px) calc(50.5vw - 251px), (min-width: 780px) calc(50.83vw - 200px), 63.91vw"
+            src={members}
+            alt="Members"
+            width={700}
+            height={800}
+            className="mb-8 mx-auto border text-white"
+          />
+        </div>
         <div className="font-montserrat text-white">
           <h1 className="text-4xl pb-4 mb-4 font-bold h-fit border-b-2 border-b-solid border-b-white">
             Our Mission

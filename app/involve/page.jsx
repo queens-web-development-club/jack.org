@@ -15,12 +15,12 @@ export default function Involve() {
           </h1>
           <div className="flex justify-center items-center">
             <Image
+              sizes="80vw"
               src={"/team/team-summit.png"}
               alt="summit team"
               width={584}
               height={223}
               className="mt-[3rem] w-full"
-              sizes="100vw"
             />
           </div>
         </section>
@@ -57,6 +57,7 @@ export default function Involve() {
               <p className="w-fit mx-auto">Members</p>
               <div className="flex flex-col items-center justify-center">
                 <Image
+                  sizes="(min-width: 1280px) calc(25vw - 144px), (min-width: 380px) 300px, calc(80vw + 12px)"
                   src={members}
                   alt=""
                   width={300}
@@ -71,6 +72,7 @@ export default function Involve() {
               <p className="w-fit mx-auto">Summit</p>
               <div className="flex flex-col items-center justify-center">
                 <Image
+                  sizes="(min-width: 1280px) calc(25vw - 144px), (min-width: 380px) 300px, calc(80vw + 12px)"
                   src={summit}
                   alt=""
                   width={300}
@@ -85,6 +87,7 @@ export default function Involve() {
               <p className="w-fit mx-auto">Events</p>
               <div className="flex flex-col items-center justify-center">
                 <Image
+                  sizes="(min-width: 1280px) calc(25vw - 144px), (min-width: 380px) 300px, calc(80vw + 12px)"
                   src={events}
                   alt=""
                   width={300}
@@ -112,7 +115,14 @@ export default function Involve() {
           </div>
         </div>
 
-        <Image src={movement} alt="join" width={300} className="w-[100%]" />
+        <Image
+          sizes="100vw"
+          src={movement}
+          alt="join"
+          width={2000}
+          height={1100}
+          className="w-full"
+        />
       </div>
     </main>
   );

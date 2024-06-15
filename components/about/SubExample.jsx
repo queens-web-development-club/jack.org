@@ -37,6 +37,7 @@ export default function SubExample({ title, listInfo, image }) {
       }}
     >
       <Image
+        sizes="100vw"
         src={image}
         alt="Wait Icon"
         width={100}

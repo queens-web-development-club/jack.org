@@ -43,7 +43,7 @@ export default function Resources() {
                 subtitle="6pm - 2am"
               />  
               <ResourceCard 
-                image="rcard5.svg"
+                image="rcard5.png"
                 text="Crisis Mental Health Support at Student Wellness Services"
                 contact="+1-613-533-2506"
                 subtitle="1st floor Mitchell Hall, 69 Union Street"
@@ -58,7 +58,7 @@ export default function Resources() {
         </div>
 
         <Banner 
-          image="resources2.svg"
+          image="/resources2.png"
         />
         <div className="2xl:w-[85%] mx-auto">
           <div className="flex flex-col sm:flex-row px-4 sm:justify-between">
@@ -90,7 +90,7 @@ export default function Resources() {
         </div>
 
         <Banner 
-          image="resources3.svg"
+          image="/resources3.svg"
         />
         <div className="2xl:w-[85%] mx-auto">
           <div className="flex flex-col sm:flex-row px-4 sm:justify-between">
@@ -135,7 +135,7 @@ export default function Resources() {
         </div>
 
         <Banner 
-          image="resources4.svg"
+          image="/resources4.png"
         />
         <div className="2xl:w-[85%] mx-auto">
           <div className="flex flex-col sm:flex-row px-4 sm:justify-between">
@@ -145,7 +145,7 @@ export default function Resources() {
               contact="+1-866-626-6005 or +1-613-544-4229"
             />  
             <ResourceCard 
-              image="rcard17.svg"
+              image="rcard17.png"
               text="AMHS Mental Health Walk-In Clininc"
               contact="+1-613-544-1356"
               subtitle="552 Princess Street"
@@ -201,7 +201,7 @@ export default function Resources() {
               link="https://play.google.com/store/apps/details?id=com.getsomeheadspace.android&hl=en&gl=US"
             />  
             <AppCard 
-              image="rcard23.svg"
+              image="rcard23.png"
               title="Liberate App"
               desc="Safe space for Black community to develop mediation habits"
               link="https://play.google.com/store/apps/details?id=com.calm.android&hl=en_CA&gl=US"

@@ -13,6 +13,7 @@ export default function NavBar() {
   const logo = (
     <Link href="/" className="flex items-center">
       <Image
+        sizes="100vw"
         src="logo.svg"
         width={288}
         height={61}

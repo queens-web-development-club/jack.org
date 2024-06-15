@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import teamimage from "../../public/team.png";
+import teamimage from "../../public/team.jpg";
 import Examples from "@/components/about/Examples";
 import TeamCard from "@/components/about/TeamCard";
 
 export default function About() {
   return (
-    <div className='flex bg-[#2F405B] flex-col !gap-2 md:!gap-2 lg:gap-2 pt-[40px] text-center'>
+    <div className="flex bg-[#2F405B] flex-col !gap-2 md:!gap-2 lg:gap-2 pt-[40px] text-center">
       <div className="w-[85%] mx-auto">
         <div className="flex flex-col lg:flex-row gap-2 items-center justify-between">
           <div className="flex flex-col justify-center gap-2 w-full lg:w-[45%] lg:text-left text-center">
@@ -15,15 +15,19 @@ export default function About() {
             </h1>
             <div className="text-lg flex flex-col gap-4">
               <p className={"text-white"}>
-              Our Jack Chapter is made up of approximately 30 executives and 70 general members working together to revolutionize youth mental health. We are proud to say we are the first and largest chapter in Canada!
+                Our Jack Chapter is made up of approximately 30 executives and
+                70 general members working together to revolutionize youth
+                mental health. We are proud to say we are the first and largest
+                chapter in Canada!
               </p>
-              
             </div>
           </div>
           <Image
+            sizes="(min-width: 1040px) 38.27vw, (min-width: 640px) 500px, calc(76.56vw + 25px)"
             src={teamimage}
             alt=""
             width={500}
+            height={333}
             className="lg:w-[45%] rounded-[20px]"
           ></Image>
         </div>
@@ -35,5 +39,5 @@ export default function About() {
         </main>
       </div>
     </div>
-  )
+  );
 }

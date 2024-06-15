@@ -15,10 +15,10 @@ const navData = [
     text: "GET INVOLVED",
     link: "/involve",
   },
-  {
-    text: "BLOG",
-    link: "/blog",
-  },
+  // {
+  //   text: "BLOG",
+  //   link: "/blog",
+  // },
   {
     text: "CONTACT",
     link: "/contact",

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import useWindowSize from "@/hooks/useWindowSize";
@@ -9,6 +9,7 @@ export default function Pres({ num, item }) {
     <div className="flex p-[1.5rem] rounded-3xl bg-white max-lg:flex-col">
       {num % 2 === 0 && (
         <Image
+          sizes="(min-width: 560px) 300px, (min-width: 380px) 56.25vw, calc(30vw + 89px)"
           src={item.image}
           alt={item.name}
           width={300}
@@ -18,6 +19,7 @@ export default function Pres({ num, item }) {
       )}
       {num % 2 !== 0 && width < 1024 && (
         <Image
+          sizes="(min-width: 560px) 300px, (min-width: 380px) 56.25vw, calc(30vw + 89px)"
           src={item.image}
           alt={item.name}
           width={300}
@@ -32,6 +34,7 @@ export default function Pres({ num, item }) {
       </div>
       {num % 2 !== 0 && width > 1024 && (
         <Image
+          sizes="(min-width: 560px) 300px, (min-width: 380px) 56.25vw, calc(30vw + 89px)"
           src={item.image}
           alt={item.name}
           width={300}

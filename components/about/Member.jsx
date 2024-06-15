@@ -1,7 +1,7 @@
 import { teamData } from "@/data/aboutData";
 import Image from "next/image";
 
-export default function Member({ item, title}) {
+export default function Member({ item, title }) {
   return (
     <section className="flex flex-col items-center justify-center">
       <h2 className="text-4xl font-bold text-white mt-[3rem]">{title}</h2>
@@ -12,6 +12,7 @@ export default function Member({ item, title}) {
             key={key}
           >
             <Image
+              sizes="(min-width: 440px) 250px, calc(65vw - 23px)"
               src={teamMember.image}
               alt={teamMember.name}
               width={250}
@@ -24,5 +25,5 @@ export default function Member({ item, title}) {
         ))}
       </div>
     </section>
-  );            
+  );
 }
