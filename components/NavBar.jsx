@@ -19,7 +19,6 @@ export default function NavBar() {
         height={61}
         className="pt-[1rem]"
         alt="Jack.org"
-        sizes="100vw"
       />
     </Link>
   );
