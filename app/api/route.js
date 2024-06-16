@@ -4,6 +4,21 @@ import User from "@/models/userModel";
 import { sign } from "jsonwebtoken";
 import { cookies } from "next/headers";
 import bcrypt from "bcrypt";
+import { verifyToken } from "@/lib/verifyToken";
+
+export async function GET(req) {
+  try {
+    await verifyToken(req);
+  } catch (error) {
+    return NextResponse.json({ msg: error.msg }, { status: error.status });
+  }
+  await connectDb();
+  const user = await User.findById(req.uid).select("-password").lean().exec();
+  if (!user) {
+    return NextResponse.json({ msg: "User not found" }, { status: 404 });
+  }
+  return NextResponse.json({ user }, { status: 200 });
+}
 
 export async function POST(req) {
   await connectDb();
@@ -16,10 +31,13 @@ export async function POST(req) {
     );
   }
 
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ username })
+    .lean()
+    .exec();
   if (!user) {
     return NextResponse.json({ message: "User not found" }, { status: 404 });
   }
+
   const match = await bcrypt.compare(password, user.password);
 
   if (!match)
@@ -42,5 +60,7 @@ export async function POST(req) {
     sameSite: "strict",
   });
 
-  return NextResponse.json({ message: "successfully signed in!" });
+  const { password: _, ...rest } = user;
+
+  return NextResponse.json({ message: "successfully signed in!", user: rest });
 }
