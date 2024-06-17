@@ -41,7 +41,7 @@ export default function TipsCard({ title, bold, notBold, animated, link }) {
 
   return (
     <motion.div
-      className="border-4 lg:m-8 md:m-4 sm:w-[35%] sm:m-2 lg:w-[28%] xs:w-1/2 w-4/5 m-4 mx-auto aspect-square bg-cover relative"
+      className="border-4 w-1/4 aspect-[416/396] bg-cover relative"
       ref={divRef}
       onMouseEnter={() => handleEnterAnimate()}
       onMouseLeave={() => handleLeaveAnimate()}

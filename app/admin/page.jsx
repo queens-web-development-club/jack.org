@@ -20,32 +20,39 @@ export default function Admin() {
     }
   }
   return (
-    <form onSubmit={login}>
-      <input
-        type="text"
-        placeholder="username"
-        name="username"
-        value={account.username}
-        onChange={(e) =>
-          setAccount((prevAcc) => ({
-            ...prevAcc,
-            [e.target.name]: e.target.value,
-          }))
-        }
-      />
-      <input
-        type="password"
-        placeholder="password"
-        name="password"
-        value={account.password}
-        onChange={(e) =>
-          setAccount((prevAcc) => ({
-            ...prevAcc,
-            [e.target.name]: e.target.value,
-          }))
-        }
-      />
-      <button>login</button>
-    </form>
+    <main className="w-full h-[calc(100vh-100px)] bg-[#202835] flex justify-center items-center">
+      <form
+        onSubmit={login}
+        className="flex flex-col w-[350px] gap-[1rem] rounded-md bg-[#F7F7F7] p-[1rem]"
+      >
+        <input
+          type="text"
+          placeholder="username"
+          name="username"
+          className="rounded pl-[1rem] bg-[#E3E3E3]"
+          value={account.username}
+          onChange={(e) =>
+            setAccount((prevAcc) => ({
+              ...prevAcc,
+              [e.target.name]: e.target.value,
+            }))
+          }
+        />
+        <input
+          type="password"
+          placeholder="password"
+          name="password"
+          className="rounded pl-[1rem] bg-[#E3E3E3]"
+          value={account.password}
+          onChange={(e) =>
+            setAccount((prevAcc) => ({
+              ...prevAcc,
+              [e.target.name]: e.target.value,
+            }))
+          }
+        />
+        <button className="rounded bg-[#22B1E9]">login</button>
+      </form>
+    </main>
   );
 }
