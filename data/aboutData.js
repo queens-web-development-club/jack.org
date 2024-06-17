@@ -174,7 +174,7 @@ const exampleData = [
       "Meeting with student wellness staff to address concerns",
       "Sending open letters to administration regarding the implementation of an evidence-based care model",
     ],
-    image: "waitIcon.svg",
+    image: "/icons/waitIcon.svg",
     title: "Wait Times At Student Wellness",
   },
   {
@@ -182,14 +182,14 @@ const exampleData = [
       "Creating targeted events to sepcific groups including international and online students",
       "Working with specialized clubs to ensure our work is relevant to all equity deserving groups",
     ],
-    image: "isolatedIcon.svg",
+    image: "/icons/isolatedIcon.svg",
     title: "Feeling Isolated In Our Community",
   },
   {
     points: [
       "Working hard to increase mental health literacy across campus through our social media presence, on-campus events, general members meetings, and summits",
     ],
-    image: "handIcon.svg",
+    image: "/icons/handIcon.svg",
     title: "Stigma Around Accessing Mental Health Care",
   },
   {
@@ -197,7 +197,7 @@ const exampleData = [
       "Promoting positive self-care activities through our initiatives",
       "Opening spaces for conversation around balancing schedules",
     ],
-    image: "balanceIcon.svg",
+    image: "/icons/balanceIcon.svg",
     title: "Negative Work-Life Balance Influence",
   },
 ];

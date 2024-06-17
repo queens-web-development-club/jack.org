@@ -55,7 +55,7 @@ export default function Resources() {
         <div className="flex flex-wrap gap-[5rem] m-[2rem] justify-center">
           {tipsCardData.tipsCards.map((card, index) => (
             <TipsCard
-              key={index}
+              key={card.title}
               title={card.title}
               bold={card.bold}
               notBold={card.notBold}

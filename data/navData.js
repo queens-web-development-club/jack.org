@@ -25,4 +25,25 @@ const navData = [
   },
 ];
 
-export {navData}
+const footerData = [
+  {
+    image: "/icons/instaIcon.svg",
+    text: "@jack.orgqueenschapter",
+    link: "https://www.instagram.com/jack.orgqueenschapter/?hl=en",
+    alt: "Instagram Logo",
+  },
+  {
+    image: "/icons/tiktokIcon.svg",
+    text: "@jack.orgqueenschapter",
+    link: "https://www.tiktok.com/@jack.orgqueenschapter",
+    alt: "Tiktok Logo",
+  },
+  {
+    image: "/icons/emailIcon.svg",
+    text: "jack.orgqueens@clubs.queensu.ca",
+    link: "mailto:jack.orgqueens@clubs.queensu.ca",
+    alt: "Email Icon",
+  },
+];
+
+export { navData, footerData };

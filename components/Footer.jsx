@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { footerData } from "@/data/navData";
 
 export default function Footer() {
   return (
@@ -6,7 +7,7 @@ export default function Footer() {
       <div className="lg:w-1/2 w-fit mx-auto lg:ml-0">
         <Image
           sizes="100vw"
-          src="logo.svg"
+          src="/logo.svg"
           className="mx-auto lg:ml-0"
           alt="jack.org logo"
           width={446}
@@ -25,56 +26,24 @@ export default function Footer() {
           Social Media
         </h1>
 
-        <div className="w-fit flex items-center lg:gap-4 gap-2 mx-auto lg:mr-0 sm:float-right xl:mt-0 mt-3">
-          <Image
-            sizes="100vw"
-            className="w-fit lg:w-[28px] w-[15px]"
-            src="instaIcon.svg"
-            alt="Instagram Logo"
-            width={28}
-            height={28}
-          />
-          <a
-            className="hover:underline lg:text-xl sm:text-sm sm:w-full text-xs"
-            href="https://www.instagram.com/jack.orgqueenschapter/?hl=en"
-          >
-            @jack.orgqueenschapter
-          </a>
-        </div>
-
-        <div className="w-fit flex items-center lg:gap-4 gap-2 mx-auto lg:mr-0 sm:float-right mt-3">
-          <Image
-            sizes="100vw"
-            className="w-fit lg:w-[28px] w-[15px]"
-            src="tiktokIcon.svg"
-            alt="Tiktok Logo"
-            width={28}
-            height={28}
-          />
-          <a
-            className="hover:underline lg:text-xl sm:text-sm sm:w-full text-xs"
-            href="https://www.tiktok.com/@jack.orgqueenschapter"
-          >
-            @jack.orgqueenschapter
-          </a>
-        </div>
-
-        <div className="w-fit flex items-center lg:gap-4 gap-2 mx-auto lg:mr-0 float-right mt-2">
-          <Image
-            sizes="100vw"
-            className="w-fit lg:w-[28px] w-[15px]"
-            src="emailIcon.svg"
-            alt="Email Icon"
-            width={30}
-            height={30}
-          />
-          <a
-            className="hover:underline lg:text-xl sm:text-sm sm:w-full text-xs"
-            href="mailto:jack.orgqueens@clubs.queensu.ca"
-          >
-            jack.orgqueens@clubs.queensu.ca
-          </a>
-        </div>
+        {footerData.map((social) => (
+          <div className="w-fit flex items-center lg:gap-4 gap-2 mx-auto lg:mr-0 sm:float-right xl:mt-0 mt-3" key={social.text}>
+            <Image
+              sizes="100vw"
+              className="w-fit lg:w-[28px]"
+              src={social.image}
+              alt={social.alt}
+              width={28}
+              height={28}
+            />
+            <a
+              className="hover:underline lg:text-xl sm:text-sm sm:w-full text-xs"
+              href={social.link}
+            >
+              {social.text}
+            </a>
+          </div>
+        ))}
       </div>
     </div>
   );
