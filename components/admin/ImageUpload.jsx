@@ -29,7 +29,8 @@ export default function ImageUpload({ member, setMember, addMember }) {
   return (
     <form
       onSubmit={addMember}
-      className="flex flex-col w-[300px] gap-[1rem] bg-[#F7F7F7] rounded p-[1rem]"
+      className="flex flex-col w-[300px] h-fit gap-[1rem] bg-[#F7F7F7] rounded p-[1rem]"
+      onClick={(e) => e.stopPropagation()}
     >
       <div
         className={`w-full h-[150px] border-dotted border-2 flex justify-center items-center cursor-pointer ${
@@ -58,7 +59,7 @@ export default function ImageUpload({ member, setMember, addMember }) {
           <p className="text-center">Drag & drop or upload</p>
         </div>
       </div>
-      {member.image && (
+      {member.image ? (
         <Image
           src={URL.createObjectURL(member.image)}
           alt={member.image.name}
@@ -66,6 +67,15 @@ export default function ImageUpload({ member, setMember, addMember }) {
           height={300}
           onLoad={() => URL.revokeObjectURL(member.image)}
         />
+      ) : (
+        member?.currentImage && (
+          <Image
+            src={member.currentImage}
+            alt={member.currentImage.name}
+            width={300}
+            height={300}
+          />
+        )
       )}
       <input
         type="text"
@@ -104,6 +114,7 @@ export default function ImageUpload({ member, setMember, addMember }) {
       )}
       <select
         name="type"
+        value={member.type}
         onChange={(e) =>
           setMember((prev) => ({
             ...prev,

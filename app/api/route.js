@@ -19,7 +19,7 @@ export async function GET(req) {
     return NextResponse.json({ msg: "User not found" }, { status: 404 });
   }
   const images = await Member.find().lean().exec();
-  user.images = images;
+  user.members = images;
   return NextResponse.json({ user }, { status: 200 });
 }
 

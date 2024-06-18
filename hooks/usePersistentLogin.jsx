@@ -6,8 +6,7 @@ import { useUserContext } from "@/Context/UserContext";
 
 export default function usePersistLogin({ children }) {
   const axios = useAxios();
-  const { setUser } = useUserContext();
-  const [loading, setLoading] = useState(true);
+  const { setUser, setLoading } = useUserContext();
   useEffect(() => {
     (async () => {
       try {
@@ -21,5 +20,5 @@ export default function usePersistLogin({ children }) {
     })();
   }, []);
 
-  return loading ? <div>loading...</div> : children;
+  return children;
 }

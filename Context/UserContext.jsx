@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { createContext, useContext, useState } from "react";
 
@@ -10,9 +10,10 @@ export function useUserContext() {
 
 export default function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, loading, setLoading }}>
       {children}
     </UserContext.Provider>
   );
