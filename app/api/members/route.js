@@ -4,21 +4,7 @@ import { connectDb } from "@/lib/connectDb";
 import { verifyToken } from "@/lib/verifyToken";
 import cloudinary from "cloudinary";
 import { Buffer } from "buffer";
-
-// Helper function to upload the image to Cloudinary
-const uploadToCloudinary = (buffer) => {
-  return new Promise((resolve, reject) => {
-    cloudinary.v2.uploader
-      .upload_stream({ resource_type: "image" }, (error, result) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(result);
-        }
-      })
-      .end(buffer);
-  });
-};
+import { uploadToCloudinary } from "@/lib/uploadToCloudinary";
 
 export async function POST(req) {
   try {
@@ -34,6 +20,11 @@ export async function POST(req) {
   const name = formData.get("name");
   const position = formData.get("position");
   const image = formData.get("image");
+  const type = formData.get("type");
+  let testimonial;
+  if (type === "Pres") {
+    testimonial = formData.get("testimonial");
+  }
 
   if (!name || !position || !image) {
     return NextResponse.json(
@@ -62,11 +53,18 @@ export async function POST(req) {
     return NextResponse.json({ msg: "Image upload failed!" }, { status: 500 });
   }
 
-  const newMember = await Member.create({
+  const newMemberData = {
+    type,
     name,
     position,
     image: res.secure_url,
-  });
+  };
+
+  if (type === "Pres") {
+    newMemberData.testimonial = testimonial; // Ensure 'testimonial' is defined and holds the required value
+  }
+
+  const newMember = await Member.create(newMemberData);
 
   return NextResponse.json({ msg: "Member uploaded!" });
 }

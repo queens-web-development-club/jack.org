@@ -1,11 +1,19 @@
 "use client";
 
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { useUserContext } from "@/Context/UserContext";
+import ImageUpload from "@/components/admin/ImageUpload";
+import { useState } from "react";
 
 export default function Members() {
-  const [member, setMember] = useState({ name: "", position: "", image: "" });
+  const [member, setMember] = useState({
+    name: "",
+    position: "",
+    image: "",
+    type: "Normal",
+    testimonial: "",
+  });
+
   const { user } = useUserContext();
   async function addMember(e) {
     e.preventDefault();
@@ -13,6 +21,7 @@ export default function Members() {
     formData.append("name", member.name);
     formData.append("position", member.position);
     formData.append("image", member.image);
+    formData.append("type", member.type);
     try {
       const res = await axios.post("/api/members", formData);
       console.log(res);
@@ -22,39 +31,8 @@ export default function Members() {
   }
 
   return (
-    <main className="w-full h-[calc(100vh-100px)] bg-[#202835]">
-      <form onSubmit={addMember}>
-        <input
-          type="text"
-          placeholder="name"
-          value={member.name}
-          name="name"
-          onChange={(e) =>
-            setMember((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-          }
-        />
-        <input
-          type="text"
-          placeholder="position"
-          value={member.position}
-          name="position"
-          onChange={(e) =>
-            setMember((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-          }
-        />
-        <input
-          type="file"
-          name="image"
-          accept="image/*"
-          onChange={(e) =>
-            setMember((prev) => ({
-              ...prev,
-              [e.target.name]: e.target.files[0],
-            }))
-          }
-        />
-        <button>upload</button>
-      </form>
+    <main className="w-full h-[calc(100vh-100px)] bg-[#202835] p-[2rem]">
+      <ImageUpload addMember={addMember} setMember={setMember} member={member}/>
       {/* {user.images.map((img) => (
         <img src={img.image} alt="" />
       ))} */}

@@ -12,6 +12,7 @@ export default function usePersistLogin({ children }) {
     (async () => {
       try {
         const res = await axios.get("/");
+        setUser(res.data.user);
       } catch (error) {
         console.error(error);
       } finally {

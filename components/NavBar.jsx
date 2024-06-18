@@ -14,7 +14,7 @@ export default function NavBar() {
     <Link href="/" className="flex items-center">
       <Image
         sizes="100vw"
-        src="logo.svg"
+        src="/logo.svg"
         width={288}
         height={61}
         className="pt-[1rem]"
