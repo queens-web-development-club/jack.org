@@ -5,6 +5,7 @@ import { sign } from "jsonwebtoken";
 import { cookies } from "next/headers";
 import bcrypt from "bcrypt";
 import { verifyToken } from "@/lib/verifyToken";
+import Member from "@/models/memberModel";
 
 export async function GET(req) {
   try {
@@ -17,6 +18,8 @@ export async function GET(req) {
   if (!user) {
     return NextResponse.json({ msg: "User not found" }, { status: 404 });
   }
+  const images = await Member.find().lean().exec();
+  user.images = images;
   return NextResponse.json({ user }, { status: 200 });
 }
 

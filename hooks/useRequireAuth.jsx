@@ -11,7 +11,7 @@ export default function useRequireAuth({ children }) {
   useEffect(() => {
     if (!user) {
       router.push("/admin");
-    } else {
+    } else if (user && pathname === "/admin") {
       router.push("/admin/dashboard");
     }
   }, [user, pathname]);

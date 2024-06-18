@@ -27,7 +27,7 @@ export default function Footer() {
         </h1>
 
         {footerData.map((social) => (
-          <div className="w-fit flex items-center lg:gap-4 gap-2 mx-auto lg:mr-0 sm:float-right xl:mt-0 mt-3" key={social.text}>
+          <div className="w-fit flex items-center lg:gap-4 gap-2 mx-auto lg:mr-0 sm:float-right xl:mt-0 mt-3" key={social.alt}>
             <Image
               sizes="100vw"
               className="w-fit lg:w-[28px]"
