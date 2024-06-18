@@ -8,9 +8,9 @@ export default function Layout({ children }) {
   return (
     <UserContextProvider>
       <PersistentLogin>
-        <RequireAuth>
-          <CheckLoading>{children}</CheckLoading>
-        </RequireAuth>
+        <CheckLoading>
+          <RequireAuth>{children}</RequireAuth>
+        </CheckLoading>
       </PersistentLogin>
     </UserContextProvider>
   );
