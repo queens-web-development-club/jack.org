@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useUserContext } from "@/Context/UserContext";
 import ImageUpload from "@/components/admin/ImageUpload";
-import { useState, useMemo } from "react";
+import { Fragment, useState, useMemo } from "react";
 import Image from "next/image";
 import EditModal from "@/components/modals/EditModal";
 import { CiEdit } from "react-icons/ci";
@@ -13,7 +13,7 @@ export default function Members() {
     name: "",
     position: "",
     image: "",
-    type: "Normal",
+    type: "Marketing",
     testimonial: "",
   });
   const [modalInfo, setModalInfo] = useState(null);
@@ -40,7 +40,7 @@ export default function Members() {
         name: "",
         position: "",
         image: "",
-        type: "Normal",
+        type: "Marketing",
         testimonial: "",
       });
     } catch (error) {
@@ -50,7 +50,7 @@ export default function Members() {
     }
   }
 
-  async function editMember(e){
+  async function editMember(e) {
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", modalInfo.name);
@@ -79,13 +79,15 @@ export default function Members() {
     }
   }
 
-  const pres = useMemo(
-    () => user.members.filter((img) => img.type === "Pres"),
-    [user]
-  );
-
   const members = useMemo(
-    () => user.members.filter((img) => img.type === "Normal"),
+    () =>
+      user.members.reduce((memberGroups, member) => {
+        if (!memberGroups[member.type]) {
+          memberGroups[member.type] = [];
+        }
+        memberGroups[member.type].push(member);
+        return memberGroups;
+      }, {}),
     [user]
   );
 
@@ -96,57 +98,68 @@ export default function Members() {
         setMember={setMember}
         member={member}
       />
-      <section className="border-t-2 p-[1rem]">
-        <h2 className="font-bold text-3xl text-white m-[1rem]">Presidents</h2>
-        <div className="flex flex-wrap gap-[1rem]">
-          {pres.map((img) => (
-            <div className="flex p-[1.5rem] rounded-3xl bg-white max-lg:flex-col h-fit w-fit text-center relative">
-              <Image
-                sizes="(min-width: 560px) 300px, (min-width: 380px) 56.25vw, calc(30vw + 89px)"
-                src={img.image}
-                alt={img.name}
-                width={300}
-                height={400}
-                className="rounded-3xl max-lg:mx-auto max-lg:mb-[1rem]"
-              />
+      <section>
+        {Object.keys(members).map((key) => (
+          <Fragment key={key}>
+            <h2 className="font-bold text-3xl text-white m-[1rem] pt-[1rem] border-t-2">
+              {key}
+            </h2>
+            <div className="flex flex-wrap gap-[1rem] p-[1rem]">
+              {key === "Pres"
+                ? members[key].map((img) => (
+                    <div
+                      className="flex p-[1.5rem] rounded-3xl bg-white max-lg:flex-col h-fit w-fit text-center relative"
+                      key={img._id}
+                    >
+                      <Image
+                        sizes="(min-width: 560px) 300px, (min-width: 380px) 56.25vw, calc(30vw + 89px)"
+                        src={img.image}
+                        alt={img.name}
+                        width={300}
+                        height={400}
+                        className="rounded-3xl max-lg:mx-auto max-lg:mb-[1rem]"
+                      />
+                      <div className="flex-1 px-[2rem]">
+                        <p className="font-bold text-2xl">{img.name}</p>
+                        <p className="text-[5E5E5E]">{img.position}</p>
+                        <p className="mt-[2rem]">{img.testimonial}</p>
+                      </div>
+                      <CiEdit
+                        className="absolute bottom-5 right-5 text-3xl"
+                        onClick={() =>
+                          setModalInfo({
+                            ...img,
+                            image: null,
+                            currentImage: img.image,
+                          })
+                        }
+                      />
+                    </div>
+                  ))
+                : members[key].map((img) => (
+                    <div
+                      className="rounded-xl bg-[#B6CFFF] p-[1rem] text-center w-fit h-fit"
+                      key={img._id}
+                    >
+                      <Image
+                        sizes="(min-width: 440px) 250px, calc(65vw - 23px)"
+                        src={img.image}
+                        alt={img.name}
+                        width={250}
+                        height={300}
+                        className="rounded-xl"
+                      />
+                      <p className="font-semibold text-xl mt-[1rem]">
+                        {img.name}
+                      </p>
+                      <p>{img.position}</p>
+                    </div>
+                  ))}
+            </div>
+          </Fragment>
+        ))}
+      </section>
 
-              <div className="flex-1 px-[2rem]">
-                <p className="font-bold text-2xl">{img.name}</p>
-                <p className="text-[5E5E5E]">{img.position}</p>
-                <p className="mt-[2rem]">{img.testimonial}</p>
-              </div>
-              <CiEdit
-                className="absolute bottom-5 right-5 text-3xl"
-                onClick={() =>
-                  setModalInfo({ ...img, image: null, currentImage: img.image })
-                }
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-      <section className="border-t-2 p-[1rem]">
-        <h2 className="font-bold text-3xl text-white m-[1rem]">Members</h2>
-        <div className="flex flex-wrap gap-[1rem]">
-          {members.map((img) => (
-            <div
-              className="rounded-xl bg-[#B6CFFF] p-[1rem] text-center w-fit h-fit"
-              key={img._id}
-            >
-              <Image
-                sizes="(min-width: 440px) 250px, calc(65vw - 23px)"
-                src={img.image}
-                alt={img.name}
-                width={250}
-                height={300}
-                className="rounded-xl"
-              />
-              <p className="font-semibold text-xl mt-[1rem]">{img.name}</p>
-              <p>{img.position}</p>
-            </div>
-          ))}
-        </div>
-      </section>
       {modalInfo && (
         <EditModal
           modalInfo={modalInfo}

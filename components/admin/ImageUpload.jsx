@@ -5,6 +5,8 @@ import Image from "next/image";
 export default function ImageUpload({ member, setMember, addMember }) {
   const inputRef = useRef();
 
+  const options = ["President", "Marketing", "Events", "Summit"]
+
   const [isDragging, setIsDragging] = useState(false);
 
   const handleDragOver = (event) => {
@@ -123,8 +125,11 @@ export default function ImageUpload({ member, setMember, addMember }) {
         }
         className="rounded"
       >
-        <option value="Normal">Normal</option>
-        <option value="Pres">Pres</option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
       </select>
 
       <button className="bg-[#22B1E9] rounded">upload</button>
