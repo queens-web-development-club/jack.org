@@ -6,6 +6,13 @@ import cloudinary from "cloudinary";
 import { Buffer } from "buffer";
 import { uploadToCloudinary } from "@/lib/uploadToCloudinary";
 
+// Configure Cloudinary
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 export async function POST(req) {
   try {
     await verifyToken(req);
@@ -33,21 +40,10 @@ export async function POST(req) {
     );
   }
 
-  // Convert the File object to a buffer
-  const buffer = await image.arrayBuffer();
-  const imageBuffer = Buffer.from(buffer);
-
-  // Configure Cloudinary
-  cloudinary.v2.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-  });
-
   let res;
   try {
     // Upload the buffer to Cloudinary and wait for the result
-    res = await uploadToCloudinary(imageBuffer);
+    res = await uploadToCloudinary(image);
   } catch (error) {
     console.log(error.message);
     return NextResponse.json({ msg: "Image upload failed!" }, { status: 500 });
@@ -99,17 +95,6 @@ export async function PUT(req) {
     );
   }
 
-  // Convert the File object to a buffer
-  const buffer = await image.arrayBuffer();
-  const imageBuffer = Buffer.from(buffer);
-
-  // Configure Cloudinary
-  cloudinary.v2.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-  });
-  
   // Delete the old image from Cloudinary
   if (currentImage) {
     const publicId = currentImage.split("/").pop().split(".")[0];
@@ -130,7 +115,7 @@ export async function PUT(req) {
   let res;
   try {
     // Upload the buffer to Cloudinary and wait for the result
-    res = await uploadToCloudinary(imageBuffer);
+    res = await uploadToCloudinary(image);
   } catch (error) {
     console.log(error.message);
     return NextResponse.json({ msg: "Image upload failed!" }, { status: 500 });
