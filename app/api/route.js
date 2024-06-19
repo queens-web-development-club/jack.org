@@ -65,5 +65,9 @@ export async function POST(req) {
 
   const { password: _, ...rest } = user;
 
+  const members = await Member.find().lean().exec();
+
+  user.members = members
+
   return NextResponse.json({ message: "successfully signed in!", user: rest });
 }
