@@ -7,6 +7,7 @@ import Loading from "@/components/Loading";
 
 export default function useRequireAuth({ children }) {
   const router = useRouter();
+  const restrictedPath = "/admin/dashboard"
   const { user } = useUserContext();
   const pathname = usePathname();
   useEffect(() => {
@@ -17,5 +18,11 @@ export default function useRequireAuth({ children }) {
     }
   }, [user, pathname]);
 
-  return pathname === "/admin" && user ? <Loading /> : children;
+  return pathname === "/admin" && user ? (
+    <Loading />
+  ) : !user && pathname.startsWith(restrictedPath) ? (
+    <Loading />
+  ) : (
+    children
+  );
 }
