@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Events from "@/components/involve/Events";
 import React from "react";
-import members from "../../public/membersimage.png";
-import summit from "../../public/summitimage.png";
-import events from "../../public/eventsimage.png";
+import Apply from "@/components/involve/Apply";
+
 import movement from "../../public/movement.png";
 export default function Involve() {
   return (
@@ -28,7 +27,7 @@ export default function Involve() {
         <Events />
       </div>
       <div>
-        <div className="flex bg-[#2F405B] lg:px-48 px-2 flex-col !gap-2 md:!gap-2 lg:gap-2 py-[40px] ">
+        <div className="flex bg-[#2F405B] lg:px-48 px-2 flex-col !gap-2 md:!gap-2 lg:gap-2 py-[40px] mt-[3rem]">
           <div className="text-center lg:px-32 px-4">
             <p className="text-white font-bold md:text-4xl text-2xl">
               Want to join jack.org Queen’s Chapter?
@@ -50,55 +49,11 @@ export default function Involve() {
               </li>
               <li className=" ">Committed to Personal Growth and Resilience</li>
             </ul>
-            <p className="text-2xl font-bold py-4">Apply to Join us Today!</p>
+            <p className="text-2xl font-bold py-4 mt-[3rem]">
+              Apply to Join us Today!
+            </p>
           </div>
-          <div className="flex xl:flex-row px-4 xl:px-16 flex-col gap-8 items-center text-white">
-            <div className="flex-grow font-bold md:text-2xl text-xl">
-              <p className="w-fit mx-auto">Members</p>
-              <div className="flex flex-col items-center justify-center">
-                <Image
-                  sizes="(min-width: 1280px) calc(25vw - 144px), (min-width: 380px) 300px, calc(80vw + 12px)"
-                  src={members}
-                  alt="members"
-                  width={300}
-                  className="xl:w-[75%] rounded-[20px]"
-                ></Image>
-                <button className="mt-4 px-6 py-2 bg-transparent text-white border-2 border-solid border-white rounded-lg hover:bg-[#F09E24] hover:border-2 hover:border-transparent">
-                  Apply Now
-                </button>
-              </div>
-            </div>
-            <div className="flex-grow font-bold md:text-2xl text-xl">
-              <p className="w-fit mx-auto">Summit</p>
-              <div className="flex flex-col items-center justify-center">
-                <Image
-                  sizes="(min-width: 1280px) calc(25vw - 144px), (min-width: 380px) 300px, calc(80vw + 12px)"
-                  src={summit}
-                  alt="summit"
-                  width={300}
-                  className="xl:w-[75%] rounded-[20px]"
-                ></Image>
-                <button className="mt-4 px-6 py-2 bg-transparent text-white border-2 border-solid border-white rounded-lg hover:bg-[#F09E24] hover:border-2 hover:border-transparent">
-                  Apply Now
-                </button>
-              </div>
-            </div>
-            <div className="flex-grow font-bold md:text-2xl text-xl">
-              <p className="w-fit mx-auto">Events</p>
-              <div className="flex flex-col items-center justify-center">
-                <Image
-                  sizes="(min-width: 1280px) calc(25vw - 144px), (min-width: 380px) 300px, calc(80vw + 12px)"
-                  src={events}
-                  alt="events"
-                  width={300}
-                  className="xl:w-[75%] rounded-[20px]"
-                ></Image>
-                <button className="mt-4 px-6 py-2 bg-transparent text-white border-2 border-solid border-white rounded-lg hover:bg-[#F09E24] hover:border-2 hover:border-transparent">
-                  Apply Now
-                </button>
-              </div>
-            </div>
-          </div>
+          <Apply />
         </div>
         <div className="text-center bg-[#C5A272] lg:px-32 px-4">
           <p className="text-white font-bold pt-32 md:text-6xl text-4xl">

@@ -16,7 +16,7 @@ export default function Admin() {
       setUser(res.data.user);
       router.push("/admin/dashboard");
     } catch (error) {
-      console.log(error.response.msg);
+      alert(error.response.data.msg);
     }
   }
   return (

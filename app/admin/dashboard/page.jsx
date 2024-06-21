@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logout from "@/components/Buttons/Logout";
+import ChangePassword from "@/components/admin/ChangePassword";
 
 export default function Dashboard() {
   const options = ["members", "history", "events", "links"];
@@ -21,6 +22,7 @@ export default function Dashboard() {
           </div>
         ))}
       </section>
+      <ChangePassword />
     </div>
   );
 }

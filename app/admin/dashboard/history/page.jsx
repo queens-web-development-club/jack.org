@@ -35,7 +35,6 @@ export default function page() {
       newUser.history.sort((a, b) => parseInt(b.year) - parseInt(a.year));
       setUser(newUser);
     } catch (error) {
-      console.log(error);
       alert(error.response.data.msg);
     } finally {
       setLoading(false);
@@ -77,7 +76,7 @@ export default function page() {
       };
       setUser(newUser);
     } catch (error) {
-      console.log(error);
+      alert(error);
       alert(error.response.data.msg);
     } finally {
       setLoading(false);

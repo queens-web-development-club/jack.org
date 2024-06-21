@@ -48,7 +48,7 @@ export default function Events() {
         location: "",
       });
     } catch (error) {
-      console.log(error.response.data.msg);
+      alert(error.response.data.msg);
     } finally {
       setLoading(false);
     }
@@ -63,7 +63,7 @@ export default function Events() {
         events: prev.events.filter((event) => event._id !== data._id),
       }));
     } catch (error) {
-      console.log(error.response.data.msg);
+      alert(error.response.data.msg);
     } finally {
       setLoading(false);
     }
@@ -80,7 +80,7 @@ export default function Events() {
         ),
       }));
     } catch (error) {
-      console.log(error.response.data.msg);
+      alert(error.response.data.msg);
     } finally {
       setLoading(false);
     }

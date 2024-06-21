@@ -74,5 +74,42 @@ export async function POST(req) {
 
 export async function DELETE(req) {
   cookies().delete("jacked");
-  return NextResponse.json({ msg: "successfully signed out!" })
+  return NextResponse.json({ msg: "successfully signed out!" });
+}
+
+export async function PUT(req) {
+  try {
+    await verifyToken(req);
+  } catch (error) {
+    return NextResponse.json({ msg: error.msg }, { status: error.status });
+  }
+
+  await connectDb();
+
+  const { oldPassword, password } = await req.json();
+
+  if (!oldPassword || !password) {
+    return NextResponse.json(
+      { msg: "All fields are required!" },
+      { status: 400 }
+    );
+  }
+
+  const user = await User.findById(req.uid).exec();
+
+  const match = await bcrypt.compare(oldPassword, user.password);
+
+  if (!match)
+    return NextResponse.json({ msg: "Incorrect password" }, { status: 401 });
+
+  const hashedPassword = await bcrypt.hash(password, parseInt(process.env.SALT_ROUNDS));
+
+  user.password = hashedPassword;
+
+  await user.save();
+
+  return NextResponse.json(
+    { msg: "Password updated successfully" },
+    { status: 200 }
+  );
 }

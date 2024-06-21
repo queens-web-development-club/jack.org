@@ -22,7 +22,7 @@ export async function GET(req) {
 
   // Process each user
   user[0].members = images;
-  user[0].history.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+  user[0].history.sort((a, b) => parseInt(a.year) - parseInt(b.year));
 
   // Respond with the processed users
   return NextResponse.json({ user }, { status: 200 });

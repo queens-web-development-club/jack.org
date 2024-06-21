@@ -22,7 +22,7 @@ export default function Links() {
         return { ...prev, teamLinks };
       });
     } catch (error) {
-      console.log(error.response.data.msg);
+      alert(error.response.data.msg);
     } finally {
       setLoading(false);
     }
@@ -45,7 +45,7 @@ export default function Links() {
           className="flex items-center gap-[1rem] bg-[#B6CFFF] p-[1rem] rounded"
         >
           <h2>{key === 0 ? "Member" : key === 1 ? "Summit" : "Events"}</h2>
-          <Link href={link} className="text-[#22B1E9]">
+          <Link target="_blank" href={link} className="text-[#22B1E9]">
             {link}
           </Link>
           <CiEdit

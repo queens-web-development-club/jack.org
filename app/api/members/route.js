@@ -44,7 +44,6 @@ export async function POST(req) {
     // Upload the buffer to Cloudinary and wait for the result
     res = await uploadToCloudinary(image);
   } catch (error) {
-    console.log(error.message);
     return NextResponse.json({ msg: "Image upload failed!" }, { status: 500 });
   }
 
@@ -116,7 +115,6 @@ export async function PUT(req) {
       // Upload the buffer to Cloudinary and wait for the result
       res = await uploadToCloudinary(image);
     } catch (error) {
-      console.log(error.message);
       return NextResponse.json(
         { msg: "Image upload failed!" },
         { status: 500 }
@@ -163,7 +161,6 @@ export async function DELETE(req) {
       invalidate: true,
     });
   } catch (error) {
-    console.log(error.message);
     return NextResponse.json(
       { msg: "Failed to delete old image!" },
       { status: 500 }

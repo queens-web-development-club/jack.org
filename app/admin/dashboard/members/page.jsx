@@ -60,7 +60,7 @@ export default function Members() {
         testimonial: "",
       });
     } catch (error) {
-      console.log(error.response.data.msg);
+      alert(error.response.data.msg);
     } finally {
       setLoading(false);
     }
@@ -89,7 +89,7 @@ export default function Members() {
         ),
       }));
     } catch (error) {
-      console.log(error.response.data.msg);
+      alert(error.response.data.msg);
     } finally {
       setLoading(false);
     }
@@ -106,7 +106,7 @@ export default function Members() {
         members: prev.members.filter((member) => member._id !== data._id),
       }));
     } catch (error) {
-      console.log(error.response.data.msg);
+      alert(error.response.data.msg);
     } finally {
       setLoading(false);
     }
