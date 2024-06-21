@@ -71,3 +71,8 @@ export async function POST(req) {
 
   return NextResponse.json({ message: "successfully signed in!", user: rest });
 }
+
+export async function DELETE(req) {
+  cookies().delete("jacked");
+  return NextResponse.json({ msg: "successfully signed out!" })
+}

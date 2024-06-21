@@ -4,14 +4,23 @@ import { useState } from "react";
 import Back from "@/components/Buttons/Back";
 import useAxios from "@/hooks/useAxios";
 import { useUserContext } from "@/Context/UserContext";
+import GeneralEditModal from "@/components/modals/GeneralEditModal";
+import DeleteModal from "@/components/modals/DeleteModal";
+import { MdDelete } from "react-icons/md";
+import { CiEdit } from "react-icons/ci";
 
 export default function Events() {
   const [info, setInfo] = useState({
-    description: "",
     title: "",
     date: "",
     location: "",
+    description: "",
   });
+
+  const [confirm, setConfirm] = useState(false);
+  const [modalInfo, setModalInfo] = useState(null);
+  const [data, setData] = useState(null);
+
   const { user, setUser, setLoading } = useUserContext();
 
   const axios = useAxios();
@@ -45,6 +54,38 @@ export default function Events() {
     }
   }
 
+  async function deleteEvent() {
+    try {
+      setLoading(true);
+      await axios.delete(`/events`, { data: { _id: data._id } });
+      setUser((prev) => ({
+        ...prev,
+        events: prev.events.filter((event) => event._id !== data._id),
+      }));
+    } catch (error) {
+      console.log(error.response.data.msg);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function editEvent() {
+    try {
+      setLoading(true);
+      await axios.put("/events", modalInfo);
+      setUser((prev) => ({
+        ...prev,
+        events: prev.events.map((event) =>
+          event._id === modalInfo._id ? modalInfo : event
+        ),
+      }));
+    } catch (error) {
+      console.log(error.response.data.msg);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <main className="w-full min-h-[calc(100vh-100px)] bg-[#202835] p-[2rem] flex flex-col gap-[1rem]">
       <Back />
@@ -69,8 +110,20 @@ export default function Events() {
           Add
         </button>
       </form>
+      {confirm && (
+        <DeleteModal setConfirm={setConfirm} onSubmit={deleteEvent} />
+      )}
+      {modalInfo && (
+        <GeneralEditModal
+          setModalInfo={setModalInfo}
+          fields={["title", "date", "location", "description"]}
+          modalInfo={modalInfo}
+          action={editEvent}
+        />
+      )}
+
       {user.events.map((event) => (
-        <div key={event._id} className="bg-[#F7F7F7] rounded p-[1rem]">
+        <div key={event._id} className="bg-[#F7F7F7] rounded p-[1rem] relative">
           <p>
             <span className="font-bold">Title:</span> {event.title}
           </p>
@@ -83,6 +136,19 @@ export default function Events() {
           <p>
             <span className="font-bold">Description:</span> {event.description}
           </p>
+          <div className="absolute bottom-5 right-5 text-3xl flex items-center">
+            <CiEdit
+              onClick={() => setModalInfo(event)}
+              className="cursor-pointer"
+            />
+            <MdDelete
+              className="cursor-pointer"
+              onClick={() => {
+                setConfirm(true);
+                setData(event);
+              }}
+            />
+          </div>
         </div>
       ))}
     </main>

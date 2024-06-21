@@ -1,12 +1,16 @@
 import Link from "next/link";
+import Logout from "@/components/Buttons/Logout";
 
 export default function Dashboard() {
-  const options = ["members", "history", "events"];
+  const options = ["members", "history", "events", "links"];
   return (
     <div className="w-full h-[calc(100vh-100px)] bg-[#202835]">
-      <h1 className="text-white font-bold text-5xl ml-[3rem] pt-[1rem]">
-        Dashboard
-      </h1>
+      <div className="flex items-center pt-[1rem]">
+        <h1 className="text-white font-bold text-5xl ml-[3rem]">
+          Dashboard
+        </h1>
+        <Logout />
+      </div>
       <section className="flex p-[3rem] gap-[2rem]">
         {options.map((option, key) => (
           <div

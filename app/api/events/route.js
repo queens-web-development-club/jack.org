@@ -70,8 +70,37 @@ export async function PUT(req) {
 
     return NextResponse.json(
       {
-        updatedEvent: { description, title, date, location, _id },
+        msg: "Event updated successfully",
       },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json({ msg: error.message }, { status: 500 });
+  }
+}
+
+export async function DELETE(req) {
+  try {
+    await verifyToken(req);
+  } catch (error) {
+    return NextResponse.json({ msg: error.msg }, { status: error.status });
+  }
+
+  await connectDb();
+
+  const { _id } = await req.json();
+
+  if (!_id) {
+    return NextResponse.json({ msg: "Event ID is required!" }, { status: 400 });
+  }
+
+  try {
+    await User.findByIdAndUpdate(req.uid, {
+      $pull: { events: { _id } },
+    }).exec();
+
+    return NextResponse.json(
+      { msg: "Event deleted successfully" },
       { status: 200 }
     );
   } catch (error) {
