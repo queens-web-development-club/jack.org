@@ -141,7 +141,7 @@ export default function Members() {
             <h2 className="font-bold text-3xl text-white m-[1rem] pt-[1rem] border-t-2">
               {key}
             </h2>
-            <div className="flex flex-wrap gap-[1rem] p-[1rem]">
+            <div className="flex flex-wrap gap-[1rem] p-[1rem] justify-center items-center">
               {key === "President"
                 ? members[key].map((img) => (
                     <div
