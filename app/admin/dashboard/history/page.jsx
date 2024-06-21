@@ -125,7 +125,7 @@ export default function page() {
         </button>
       </form>
       {user.history.length > 0 ? (
-        <section className="rounded p-[1rem] flex flex-col gap-[1rem]">
+        <section className="rounded p-[2rem] flex flex-col gap-[1rem]">
           {user.history.map((history, key) => (
             <div
               key={key}
@@ -138,7 +138,7 @@ export default function page() {
                 <span className="font-bold">Description:</span>{" "}
                 {history.description}
               </p>
-              <div className="absolute bottom-5 right-5 text-3xl flex items-center">
+              <div className="absolute bottom-1 right-1 text-3xl flex items-center">
                 <CiEdit
                   onClick={() => setModalInfo(history)}
                   className="cursor-pointer"

@@ -5,14 +5,12 @@ import ChangePassword from "@/components/admin/ChangePassword";
 export default function Dashboard() {
   const options = ["members", "history", "events", "links"];
   return (
-    <div className="w-full h-[calc(100vh-100px)] bg-[#202835]">
-      <div className="flex items-center pt-[1rem]">
-        <h1 className="text-white font-bold text-5xl ml-[3rem]">
-          Dashboard
-        </h1>
+    <div className="min-w-full h-[calc(100vh-100px)] bg-[#202835]">
+      <div className="flex flex-col pt-[1rem] items-start ml-[3rem] gap-[1rem]">
+        <h1 className="text-white font-bold text-5xl">Dashboard</h1>
         <Logout />
       </div>
-      <section className="flex p-[3rem] gap-[2rem]">
+      <section className="flex flex-wrap p-[3rem] gap-[2rem]">
         {options.map((option, key) => (
           <div
             key={key}

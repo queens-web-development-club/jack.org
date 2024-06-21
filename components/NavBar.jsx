@@ -39,7 +39,13 @@ export default function NavBar() {
                 key={key}
                 className="hover:bg-orange-600 flex-1 h-full flex justify-center items-center w-full p-[1rem]"
               >
-                <Link href={item.link} className="w-full h-full">{item.text}</Link>
+                <Link
+                  href={item.link}
+                  onClick={() => setOpen(!open)}
+                  className="w-full h-full"
+                >
+                  {item.text}
+                </Link>
               </li>
             ))}
           </ul>

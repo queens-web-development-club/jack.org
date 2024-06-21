@@ -42,7 +42,7 @@ export default function Links() {
       {user.teamLinks.map((link, key) => (
         <div
           key={link}
-          className="flex items-center gap-[1rem] bg-[#B6CFFF] p-[1rem] rounded"
+          className="flex flex-wrap items-center gap-[1rem] bg-[#B6CFFF] p-[1rem] rounded"
         >
           <h2>{key === 0 ? "Member" : key === 1 ? "Summit" : "Events"}</h2>
           <Link target="_blank" href={link} className="text-[#22B1E9]">

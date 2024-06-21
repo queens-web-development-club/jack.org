@@ -27,14 +27,14 @@ export default function Contact() {
       );
   };
   return (
-    <div className="w-screen bg-gradient-to-b from-[#202835] to-[#363636] px-16 pb-5">
+    <div className="w-screen bg-gradient-to-b from-[#202835] to-[#363636] px-5 md:px-16 pb-5 min-h-[calc(100vh-100px)]">
       <div className="w-full text-white text-xl lg:text-2xl font-bold py-5 lg:px-24">
         Please wait patiently as it takes time for our members to process and
         reply to your messages. You should expect a response from us within 7
         business days.
       </div>
 
-      <div className="container mx-auto mt-4 px-4 md:px-10 lg:px-20">
+      <div className="container mx-auto mt-4 md:px-10 lg:px-20">
         <div className="w-full p-1 mt-4 py-10 md:px-12 mr-auto rounded-2xl shadow-2xl bg-[#F7F7F7]">
           <div className="flex justify-center">
             <h1 className="font-bold uppercase text-3xl lg:text-5xl">

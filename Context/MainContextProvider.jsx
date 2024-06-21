@@ -31,9 +31,9 @@ export default function MainContextProvider({ children }) {
         setMainLoading(false);
       }
     };
-    if (!pathname.startsWith("/admin")) {
-      fetchMain();
-    }
+
+    fetchMain();
+
     return () => {
       ignore = true;
     };

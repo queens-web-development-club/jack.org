@@ -123,7 +123,7 @@ export default function Events() {
       )}
 
       {user.events.map((event) => (
-        <div key={event._id} className="bg-[#F7F7F7] rounded p-[1rem] relative">
+        <div key={event._id} className="bg-[#F7F7F7] rounded p-[2rem] relative">
           <p>
             <span className="font-bold">Title:</span> {event.title}
           </p>
@@ -136,7 +136,7 @@ export default function Events() {
           <p>
             <span className="font-bold">Description:</span> {event.description}
           </p>
-          <div className="absolute bottom-5 right-5 text-3xl flex items-center">
+          <div className="absolute bottom-1 right-1 text-3xl flex items-center">
             <CiEdit
               onClick={() => setModalInfo(event)}
               className="cursor-pointer"

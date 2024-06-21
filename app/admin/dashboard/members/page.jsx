@@ -161,7 +161,7 @@ export default function Members() {
                         <p className="text-[5E5E5E]">{img.role}</p>
                         <p className="mt-[2rem]">{img.testimonial}</p>
                       </div>
-                      <div className="absolute bottom-5 right-5 text-3xl flex items-center">
+                      <div className="absolute bottom-1 right-1 text-3xl flex items-center">
                         <CiEdit
                           onClick={() =>
                             setModalInfo({
