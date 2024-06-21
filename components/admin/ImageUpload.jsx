@@ -99,7 +99,7 @@ export default function ImageUpload({ member, setMember, addMember }) {
           setMember((prev) => ({ ...prev, [e.target.name]: e.target.value }))
         }
       />
-      {member.type === "Pres" && (
+      {member.type === "President" && (
         <textarea
           type="text"
           placeholder="testimonial"

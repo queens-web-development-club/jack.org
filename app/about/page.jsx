@@ -25,7 +25,7 @@ export default function About() {
           <Image
             sizes="(min-width: 1040px) 38.27vw, (min-width: 640px) 500px, calc(76.56vw + 25px)"
             src={teamimage}
-            alt=""
+            alt="team"
             width={500}
             height={333}
             className="lg:w-[45%] rounded-[20px]"

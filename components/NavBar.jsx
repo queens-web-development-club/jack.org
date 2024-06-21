@@ -32,7 +32,7 @@ export default function NavBar() {
         onClick={() => setOpen(!open)}
       />
       {open && (
-        <div className="w-[200px] h-fit absolute bg-[#202835] top-[10%]">
+        <div className="w-[200px] h-fit absolute bg-[#202835] top-[10%] z-[100]">
           <ul className="flex flex-col justify-center font-bold text-[1.3rem] text-white">
             {navData.map((item, key) => (
               <li

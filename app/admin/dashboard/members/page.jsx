@@ -7,6 +7,9 @@ import { Fragment, useState, useMemo } from "react";
 import Image from "next/image";
 import EditModal from "@/components/modals/EditModal";
 import { CiEdit } from "react-icons/ci";
+import Back from "@/components/Buttons/Back";
+import { MdDelete } from "react-icons/md";
+import DeleteModal from "@/components/modals/DeleteModal";
 
 export default function Members() {
   const [member, setMember] = useState({
@@ -17,7 +20,8 @@ export default function Members() {
     testimonial: "",
   });
   const [modalInfo, setModalInfo] = useState(null);
-
+  const [confirm, setConfirm] = useState(false);
+  const [data, setData] = useState(null);
   const { user, setUser, setLoading } = useUserContext();
 
   async function addMember(e) {
@@ -79,6 +83,23 @@ export default function Members() {
     }
   }
 
+  async function deleteMember() {
+    try {
+      setLoading(true);
+      await axios.delete(`/api/members`, {
+        data: { id: data._id, currentPhoto: data.image },
+      });
+      setUser((prev) => ({
+        ...prev,
+        members: prev.members.filter((member) => member._id !== data._id),
+      }));
+    } catch (error) {
+      console.log(error.response.data.msg);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   const members = useMemo(
     () =>
       user.members.reduce((memberGroups, member) => {
@@ -93,11 +114,15 @@ export default function Members() {
 
   return (
     <main className="w-full min-h-[calc(100vh-100px)] bg-[#202835] p-[2rem] flex flex-col gap-[1rem]">
+      <Back />
       <ImageUpload
         addMember={addMember}
         setMember={setMember}
         member={member}
       />
+      {confirm && (
+        <DeleteModal onSubmit={deleteMember} setConfirm={setConfirm} />
+      )}
       <section>
         {Object.keys(members).map((key) => (
           <Fragment key={key}>
@@ -105,7 +130,7 @@ export default function Members() {
               {key}
             </h2>
             <div className="flex flex-wrap gap-[1rem] p-[1rem]">
-              {key === "Pres"
+              {key === "President"
                 ? members[key].map((img) => (
                     <div
                       className="flex p-[1.5rem] rounded-3xl bg-white max-lg:flex-col h-fit w-fit text-center relative"
@@ -124,21 +149,28 @@ export default function Members() {
                         <p className="text-[5E5E5E]">{img.position}</p>
                         <p className="mt-[2rem]">{img.testimonial}</p>
                       </div>
-                      <CiEdit
-                        className="absolute bottom-5 right-5 text-3xl"
-                        onClick={() =>
-                          setModalInfo({
-                            ...img,
-                            image: null,
-                            currentImage: img.image,
-                          })
-                        }
-                      />
+                      <div className="absolute bottom-5 right-5 text-3xl flex items-center">
+                        <CiEdit
+                          onClick={() =>
+                            setModalInfo({
+                              ...img,
+                              image: null,
+                              currentImage: img.image,
+                            })
+                          }
+                        />
+                        <MdDelete
+                          onClick={() => {
+                            setConfirm(true);
+                            setData(img);
+                          }}
+                        />
+                      </div>
                     </div>
                   ))
                 : members[key].map((img) => (
                     <div
-                      className="rounded-xl bg-[#B6CFFF] p-[1rem] text-center w-fit h-fit"
+                      className="rounded-xl bg-[#B6CFFF] p-[1rem] text-center w-fit h-fit relative"
                       key={img._id}
                     >
                       <Image
@@ -153,6 +185,25 @@ export default function Members() {
                         {img.name}
                       </p>
                       <p>{img.position}</p>
+                      <div className="absolute bottom-1 right-1 text-xl flex items-center">
+                        <CiEdit
+                          className="cursor-pointer"
+                          onClick={() =>
+                            setModalInfo({
+                              ...img,
+                              image: null,
+                              currentImage: img.image,
+                            })
+                          }
+                        />
+                        <MdDelete
+                          className="cursor-pointer"
+                          onClick={() => {
+                            setConfirm(true);
+                            setData(img);
+                          }}
+                        />
+                      </div>
                     </div>
                   ))}
             </div>

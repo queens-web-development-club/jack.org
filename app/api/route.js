@@ -20,6 +20,8 @@ export async function GET(req) {
   }
   const images = await Member.find().lean().exec();
   user.members = images;
+  user.history.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+
   return NextResponse.json({ user }, { status: 200 });
 }
 
@@ -34,9 +36,7 @@ export async function POST(req) {
     );
   }
 
-  const user = await User.findOne({ username })
-    .lean()
-    .exec();
+  const user = await User.findOne({ username }).lean().exec();
   if (!user) {
     return NextResponse.json({ message: "User not found" }, { status: 404 });
   }
@@ -67,7 +67,7 @@ export async function POST(req) {
 
   const members = await Member.find().lean().exec();
 
-  rest.members = members
+  rest.members = members;
 
   return NextResponse.json({ message: "successfully signed in!", user: rest });
 }

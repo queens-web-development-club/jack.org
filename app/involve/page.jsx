@@ -59,7 +59,7 @@ export default function Involve() {
                 <Image
                   sizes="(min-width: 1280px) calc(25vw - 144px), (min-width: 380px) 300px, calc(80vw + 12px)"
                   src={members}
-                  alt=""
+                  alt="members"
                   width={300}
                   className="xl:w-[75%] rounded-[20px]"
                 ></Image>
@@ -74,7 +74,7 @@ export default function Involve() {
                 <Image
                   sizes="(min-width: 1280px) calc(25vw - 144px), (min-width: 380px) 300px, calc(80vw + 12px)"
                   src={summit}
-                  alt=""
+                  alt="summit"
                   width={300}
                   className="xl:w-[75%] rounded-[20px]"
                 ></Image>
@@ -89,7 +89,7 @@ export default function Involve() {
                 <Image
                   sizes="(min-width: 1280px) calc(25vw - 144px), (min-width: 380px) 300px, calc(80vw + 12px)"
                   src={events}
-                  alt=""
+                  alt="events"
                   width={300}
                   className="xl:w-[75%] rounded-[20px]"
                 ></Image>

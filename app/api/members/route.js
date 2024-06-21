@@ -29,7 +29,7 @@ export async function POST(req) {
   const image = formData.get("image");
   const type = formData.get("type");
   let testimonial;
-  if (type === "Pres") {
+  if (type === "President") {
     testimonial = formData.get("testimonial");
   }
 
@@ -56,7 +56,7 @@ export async function POST(req) {
     image: res.secure_url,
   };
 
-  if (type === "Pres") {
+  if (type === "President") {
     newMemberData.testimonial = testimonial; // Ensure 'testimonial' is defined and holds the required value
   }
 
@@ -82,11 +82,13 @@ export async function PUT(req) {
   const type = formData.get("type");
   let currentImage = formData.get("currentImage");
   let testimonial;
-  if (type === "Pres") {
+  if (type === "President") {
     testimonial = formData.get("testimonial");
   }
 
   const _id = formData.get("_id");
+
+  const member = await Member.findById(_id);
 
   if (!name || !position || !image || !_id) {
     return NextResponse.json(
@@ -95,8 +97,10 @@ export async function PUT(req) {
     );
   }
 
-  // Delete the old image from Cloudinary
-  if (currentImage) {
+  let res;
+
+  // Delete the old image from Cloudinary only if its diff from the new image
+  if (currentImage && currentImage !== member.image) {
     const publicId = currentImage.split("/").pop().split(".")[0];
     try {
       await cloudinary.v2.uploader.destroy(publicId, {
@@ -104,31 +108,31 @@ export async function PUT(req) {
         invalidate: true,
       });
     } catch (error) {
-      console.log(error.message);
       return NextResponse.json(
         { msg: "Failed to delete old image!" },
         { status: 500 }
       );
     }
-  }
-
-  let res;
-  try {
-    // Upload the buffer to Cloudinary and wait for the result
-    res = await uploadToCloudinary(image);
-  } catch (error) {
-    console.log(error.message);
-    return NextResponse.json({ msg: "Image upload failed!" }, { status: 500 });
+    try {
+      // Upload the buffer to Cloudinary and wait for the result
+      res = await uploadToCloudinary(image);
+    } catch (error) {
+      console.log(error.message);
+      return NextResponse.json(
+        { msg: "Image upload failed!" },
+        { status: 500 }
+      );
+    }
   }
 
   const newMemberData = {
     type,
     name,
     position,
-    image: res.secure_url,
+    image: currentImage !== member.image ? res.secure_url : member.image,
   };
 
-  if (type === "Pres") {
+  if (type === "President") {
     newMemberData.testimonial = testimonial; // Ensure 'testimonial' is defined and holds the required value
   }
 
@@ -137,4 +141,35 @@ export async function PUT(req) {
   });
 
   return NextResponse.json({ msg: "Member updated!", updatedMember });
+}
+
+export async function DELETE(req) {
+  try {
+    await verifyToken(req);
+  } catch (error) {
+    return NextResponse.json({ msg: error.msg }, { status: error.status });
+  }
+
+  await connectDb();
+
+  const { id, currentPhoto } = await req.json();
+
+  await Member.findByIdAndDelete(id);
+
+  // Delete the old image from Cloudinary
+  const publicId = currentPhoto.split("/").pop().split(".")[0];
+  try {
+    await cloudinary.v2.uploader.destroy(publicId, {
+      resource_type: "image",
+      invalidate: true,
+    });
+  } catch (error) {
+    console.log(error.message);
+    return NextResponse.json(
+      { msg: "Failed to delete old image!" },
+      { status: 500 }
+    );
+  }
+
+  return NextResponse.json({ msg: "Member deleted!" });
 }
