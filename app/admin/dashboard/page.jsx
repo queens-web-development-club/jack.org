@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function Dashboard() {
-  const options = ["members", "history"];
+  const options = ["members", "history", "events"];
   return (
     <div className="w-full h-[calc(100vh-100px)] bg-[#202835]">
       <h1 className="text-white font-bold text-5xl ml-[3rem] pt-[1rem]">

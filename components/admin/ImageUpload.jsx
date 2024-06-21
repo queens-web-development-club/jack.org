@@ -84,7 +84,7 @@ export default function ImageUpload({ member, setMember, addMember }) {
         placeholder="name"
         value={member.name}
         name="name"
-        className="rounded"
+        className="rounded border-[#22B1E9] border"
         onChange={(e) =>
           setMember((prev) => ({ ...prev, [e.target.name]: e.target.value }))
         }
@@ -94,7 +94,7 @@ export default function ImageUpload({ member, setMember, addMember }) {
         placeholder="position"
         value={member.position}
         name="position"
-        className="rounded"
+        className="rounded border-[#22B1E9] border"
         onChange={(e) =>
           setMember((prev) => ({ ...prev, [e.target.name]: e.target.value }))
         }
@@ -105,7 +105,7 @@ export default function ImageUpload({ member, setMember, addMember }) {
           placeholder="testimonial"
           value={member.testimonial}
           name="testimonial"
-          className="rounded"
+          className="rounded border-[#22B1E9] border"
           onChange={(e) =>
             setMember((prev) => ({
               ...prev,
@@ -123,7 +123,7 @@ export default function ImageUpload({ member, setMember, addMember }) {
             [e.target.name]: e.target.value,
           }))
         }
-        className="rounded"
+        className="rounded border-[#22B1E9] border"
       >
         {options.map((option) => (
           <option key={option} value={option}>

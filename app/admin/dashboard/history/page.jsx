@@ -106,7 +106,7 @@ export default function page() {
           type="text"
           name="year"
           placeholder="Year"
-          className="w-full p-[0.5rem] rounded"
+          className="w-full p-[0.5rem] rounded border-[#22B1E9] border"
           value={info?.year}
           onChange={(e) => setInfo({ ...info, year: e.target.value })}
         />
@@ -114,7 +114,7 @@ export default function page() {
           type="text"
           name="description"
           placeholder="Description"
-          className="w-full p-[0.5rem] rounded"
+          className="w-full p-[0.5rem] rounded border-[#22B1E9] border"
           value={info?.description}
           onChange={(e) => setInfo({ ...info, description: e.target.value })}
         />

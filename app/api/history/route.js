@@ -2,7 +2,6 @@ import { connectDb } from "@/lib/connectDb";
 import User from "@/models/userModel";
 import { verifyToken } from "@/lib/verifyToken";
 import { NextResponse } from "next/server";
-import mongoose from "mongoose";
 
 export async function POST(req) {
   try {
