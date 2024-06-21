@@ -39,7 +39,7 @@ export default function NavBar() {
                 key={key}
                 className="hover:bg-orange-600 flex-1 h-full flex justify-center items-center w-full p-[1rem]"
               >
-                <Link href={item.link}>{item.text}</Link>
+                <Link href={item.link} className="w-full h-full">{item.text}</Link>
               </li>
             ))}
           </ul>
@@ -51,11 +51,13 @@ export default function NavBar() {
   const deskLinks = (
     <ul className="flex h-full items-center font-bold text-[1rem] 2xl:text-[1.3rem] text-white">
       {navData.map((item, key) => (
-        <li
-          key={key}
-          className="hover:bg-orange-600 flex-1 h-full flex justify-center items-center"
-        >
-          <Link href={item.link}>{item.text}</Link>
+        <li key={key} className="hover:bg-orange-600 flex-1 h-full">
+          <Link
+            href={item.link}
+            className="w-full h-full flex justify-center items-center"
+          >
+            {item.text}
+          </Link>
         </li>
       ))}
     </ul>

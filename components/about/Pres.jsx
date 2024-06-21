@@ -30,7 +30,7 @@ export default function Pres({ num, item }) {
       <div className="flex-1 px-[2rem]">
         <p className="font-bold text-2xl">{item.name}</p>
         <p className="text-[5E5E5E]">{item.role}</p>
-        <p className="mt-[2rem]">{item.desc}</p>
+        <p className="mt-[2rem]">{item.testimonial}</p>
       </div>
       {num % 2 !== 0 && width > 1024 && (
         <Image

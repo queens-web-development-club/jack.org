@@ -14,9 +14,9 @@ import DeleteModal from "@/components/modals/DeleteModal";
 export default function Members() {
   const [member, setMember] = useState({
     name: "",
-    position: "",
+    role: "",
     image: "",
-    type: "Marketing",
+    type: "Events",
     testimonial: "",
   });
   const axios = useAxios();
@@ -27,9 +27,20 @@ export default function Members() {
 
   async function addMember(e) {
     e.preventDefault();
+    for (const key in member) {
+      if (member.type === "President") {
+        if (member[key] === "") {
+          return alert("All fields are required!");
+        }
+      } else {
+        if (member[key] === "" && key !== "testimonial") {
+          return alert("All fields are required!");
+        }
+      }
+    }
     const formData = new FormData();
     formData.append("name", member.name);
-    formData.append("position", member.position);
+    formData.append("role", member.role);
     formData.append("image", member.image);
     formData.append("type", member.type);
     formData.append("testimonial", member.testimonial);
@@ -43,7 +54,7 @@ export default function Members() {
 
       setMember({
         name: "",
-        position: "",
+        role: "",
         image: "",
         type: "Marketing",
         testimonial: "",
@@ -59,7 +70,7 @@ export default function Members() {
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", modalInfo.name);
-    formData.append("position", modalInfo.position);
+    formData.append("role", modalInfo.role);
     formData.append("image", modalInfo.image);
     formData.append("type", modalInfo.type);
     formData.append("testimonial", modalInfo.testimonial);
@@ -147,7 +158,7 @@ export default function Members() {
                       />
                       <div className="flex-1 px-[2rem]">
                         <p className="font-bold text-2xl">{img.name}</p>
-                        <p className="text-[5E5E5E]">{img.position}</p>
+                        <p className="text-[5E5E5E]">{img.role}</p>
                         <p className="mt-[2rem]">{img.testimonial}</p>
                       </div>
                       <div className="absolute bottom-5 right-5 text-3xl flex items-center">
@@ -185,7 +196,7 @@ export default function Members() {
                       <p className="font-semibold text-xl mt-[1rem]">
                         {img.name}
                       </p>
-                      <p>{img.position}</p>
+                      <p>{img.role}</p>
                       <div className="absolute bottom-1 right-1 text-xl flex items-center">
                         <CiEdit
                           className="cursor-pointer"

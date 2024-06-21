@@ -5,7 +5,7 @@ const memberSchema = new Schema({
     type: String,
     required: true,
   },
-  position: {
+  role: {
     type: String,
     required: true,
   },

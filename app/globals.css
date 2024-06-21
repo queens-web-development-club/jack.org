@@ -12,7 +12,7 @@
 }
 
 .spinner {
-  animation: load 1.5s linear infinite;
+  animation: load 1s linear infinite;
 }
 
 @keyframes load {

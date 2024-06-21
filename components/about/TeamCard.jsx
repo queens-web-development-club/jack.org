@@ -1,24 +1,44 @@
+"use client";
+
 import { teamData } from "@/data/aboutData";
 import Member from "./Member";
 import Pres from "./Pres";
+import { useMemo } from "react";
+import { useMainContext } from "@/Context/MainContextProvider";
 export default function TeamCard() {
-  const roles = ["marketing", "summit", "events"];
+  const { main } = useMainContext();
+
+  const members = useMemo(
+    () =>
+      main.members.reduce((memberGroups, member) => {
+        if (!memberGroups[member.type]) {
+          memberGroups[member.type] = [];
+        }
+        memberGroups[member.type].push(member);
+        return memberGroups;
+      }, {}),
+    [main]
+  );
+
   return (
     <>
       <section className="flex justify-center items-center flex-col gap-[3rem]">
         <h2 className="text-4xl font-bold text-white">Co-Presidents</h2>
-        {teamData.pres.map((item, key) => (
+        {members["President"].map((item, key) => (
           <Pres item={item} key={key} num={key} />
         ))}
       </section>
-      {roles.map((item, key) => {
+      {Object.keys(members).map((item, key) => {
+        if (item === "President") {
+          return;
+        }
         const title =
-          item === "marketing"
+          item === "Marketing"
             ? "Members and Marketing"
-            : item === "events"
+            : item === "Events"
             ? "Events Intersectionality"
-            : "Summit";
-        return <Member item={item} title={title} key={key} />;
+            : item === "Summit" && "Summit";
+        return <Member item={members[item]} title={title} key={key} />;
       })}
     </>
   );

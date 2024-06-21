@@ -3,7 +3,6 @@ import Member from "@/models/memberModel";
 import { connectDb } from "@/lib/connectDb";
 import { verifyToken } from "@/lib/verifyToken";
 import cloudinary from "cloudinary";
-import { Buffer } from "buffer";
 import { uploadToCloudinary } from "@/lib/uploadToCloudinary";
 
 // Configure Cloudinary
@@ -25,7 +24,7 @@ export async function POST(req) {
   const formData = await req.formData();
 
   const name = formData.get("name");
-  const position = formData.get("position");
+  const role = formData.get("role");
   const image = formData.get("image");
   const type = formData.get("type");
   let testimonial;
@@ -33,7 +32,7 @@ export async function POST(req) {
     testimonial = formData.get("testimonial");
   }
 
-  if (!name || !position || !image) {
+  if (!name || !role || !image) {
     return NextResponse.json(
       { msg: "All fields are required!" },
       { status: 400 }
@@ -52,7 +51,7 @@ export async function POST(req) {
   const newMemberData = {
     type,
     name,
-    position,
+    role,
     image: res.secure_url,
   };
 
@@ -77,7 +76,7 @@ export async function PUT(req) {
   const formData = await req.formData();
 
   const name = formData.get("name");
-  const position = formData.get("position");
+  const role = formData.get("role");
   const image = formData.get("image");
   const type = formData.get("type");
   let currentImage = formData.get("currentImage");
@@ -90,7 +89,7 @@ export async function PUT(req) {
 
   const member = await Member.findById(_id);
 
-  if (!name || !position || !image || !_id) {
+  if (!name || !role || !image || !_id) {
     return NextResponse.json(
       { msg: "All fields are required!" },
       { status: 400 }
@@ -128,7 +127,7 @@ export async function PUT(req) {
   const newMemberData = {
     type,
     name,
-    position,
+    role,
     image: currentImage !== member.image ? res.secure_url : member.image,
   };
 

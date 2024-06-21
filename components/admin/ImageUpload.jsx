@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function ImageUpload({ member, setMember, addMember }) {
   const inputRef = useRef();
 
-  const options = ["President", "Marketing", "Events", "Summit"]
+  const options = ["President", "Marketing", "Events", "Summit"];
 
   const [isDragging, setIsDragging] = useState(false);
 
@@ -91,9 +91,9 @@ export default function ImageUpload({ member, setMember, addMember }) {
       />
       <input
         type="text"
-        placeholder="position"
-        value={member.position}
-        name="position"
+        placeholder="role"
+        value={member.role}
+        name="role"
         className="rounded border-[#22B1E9] border"
         onChange={(e) =>
           setMember((prev) => ({ ...prev, [e.target.name]: e.target.value }))
