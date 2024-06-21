@@ -1,6 +1,6 @@
 "use client";
 
-import axios from "axios";
+import useAxios from "@/hooks/useAxios";
 import { useUserContext } from "@/Context/UserContext";
 import ImageUpload from "@/components/admin/ImageUpload";
 import { Fragment, useState, useMemo } from "react";
@@ -19,6 +19,7 @@ export default function Members() {
     type: "Marketing",
     testimonial: "",
   });
+  const axios = useAxios();
   const [modalInfo, setModalInfo] = useState(null);
   const [confirm, setConfirm] = useState(false);
   const [data, setData] = useState(null);
@@ -34,7 +35,7 @@ export default function Members() {
     formData.append("testimonial", member.testimonial);
     try {
       setLoading(true);
-      const res = await axios.post("/api/members", formData);
+      const res = await axios.post("/members", formData);
       setUser((prev) => ({
         ...prev,
         members: [...prev.members, res.data.newMember],
@@ -67,7 +68,7 @@ export default function Members() {
     try {
       setLoading(true);
       setModalInfo(null);
-      const res = await axios.put(`/api/members`, formData);
+      const res = await axios.put(`/members`, formData);
       setUser((prev) => ({
         ...prev,
         members: prev.members.map((member) =>
@@ -86,7 +87,7 @@ export default function Members() {
   async function deleteMember() {
     try {
       setLoading(true);
-      await axios.delete(`/api/members`, {
+      await axios.delete(`/members`, {
         data: { id: data._id, currentPhoto: data.image },
       });
       setUser((prev) => ({

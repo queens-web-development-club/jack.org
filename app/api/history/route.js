@@ -10,7 +10,7 @@ export async function POST(req) {
     return NextResponse.json({ msg: error.msg }, { status: error.status });
   }
   await connectDb();
-  const { year, description, _id } = await req.json();
+  const { year, description } = await req.json();
   if (!year || !description) {
     return NextResponse.json(
       { msg: "All fields are required!" },
@@ -18,11 +18,13 @@ export async function POST(req) {
     );
   }
 
-  await User.findByIdAndUpdate(req.uid, {
+  const user = await User.findByIdAndUpdate(req.uid, {
     $push: { history: { year, description } },
-  }).exec();
+  }, {new: true}).exec();
 
-  return NextResponse.json({ history: { year, description } }, { status: 200 });
+  const newHistory = user.history[user.history.length - 1];
+
+  return NextResponse.json({ history: newHistory }, { status: 200 });
 }
 
 export async function PUT(req) {
@@ -70,30 +72,36 @@ export async function PUT(req) {
 }
 
 export async function DELETE(req) {
-    try {
-        await verifyToken(req);
-    } catch (error) {
-        return NextResponse.json({ msg: error.msg }, { status: error.status });
-    }
-    
-    await connectDb();
-    
-    const { _id } = await req.json();
-    
-    if (!_id) {
-        return NextResponse.json({ msg: "All fields are required!" }, { status: 400 });
-    }
-    
-    try {
-        await User.findByIdAndUpdate(req.uid, {
-        $pull: { history: { _id: _id } },
-        }).exec();
-    
-        return NextResponse.json({ msg: "History entry deleted!" }, { status: 200 });
-    } catch (error) {
-        return NextResponse.json(
-        { msg: "Error deleting history entry", error: error.message },
-        { status: 500 }
-        );
-    }
+  try {
+    await verifyToken(req);
+  } catch (error) {
+    return NextResponse.json({ msg: error.msg }, { status: error.status });
+  }
+
+  await connectDb();
+
+  const { _id } = await req.json();
+
+  if (!_id) {
+    return NextResponse.json(
+      { msg: "All fields are required!" },
+      { status: 400 }
+    );
+  }
+
+  try {
+    await User.findByIdAndUpdate(req.uid, {
+      $pull: { history: { _id: _id } },
+    }).exec();
+
+    return NextResponse.json(
+      { msg: "History entry deleted!" },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { msg: "Error deleting history entry", error: error.message },
+      { status: 500 }
+    );
+  }
 }

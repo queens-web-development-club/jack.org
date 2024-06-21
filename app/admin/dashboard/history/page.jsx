@@ -132,8 +132,13 @@ export default function page() {
               key={key}
               className="flex flex-col gap-[0.5rem] bg-[#F7F7F7] p-[1rem] rounded relative"
             >
-              <p className="font-bold">{history.year}</p>
-              <p>{history.description}</p>
+              <p>
+                <span className="font-bold">Year:</span> {history.year}
+              </p>
+              <p>
+                <span className="font-bold">Description:</span>{" "}
+                {history.description}
+              </p>
               <div className="absolute bottom-5 right-5 text-3xl flex items-center">
                 <CiEdit
                   onClick={() => setModalInfo(history)}
