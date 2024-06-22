@@ -15,6 +15,7 @@ export default function MainContextProvider({ children }) {
   const pathname = usePathname();
   const [main, setMain] = useState(null);
   const [mainLoading, setMainLoading] = useState(true);
+
   useEffect(() => {
     let ignore = false;
     if (pathname.startsWith("/admin")) {
@@ -39,7 +40,7 @@ export default function MainContextProvider({ children }) {
     };
   }, []);
 
-  if (mainLoading) {
+  if (mainLoading || !main) {
     return <Loading />;
   }
 
