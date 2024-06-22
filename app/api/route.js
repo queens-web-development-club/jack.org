@@ -38,7 +38,7 @@ export async function POST(req) {
 
   const user = await User.findOne({ username }).lean().exec();
   if (!user) {
-    return NextResponse.json({ message: "User not found" }, { status: 404 });
+    return NextResponse.json({ msg: "User not found" }, { status: 404 });
   }
 
   const match = await bcrypt.compare(password, user.password);
@@ -69,7 +69,7 @@ export async function POST(req) {
 
   rest.members = members;
 
-  return NextResponse.json({ message: "successfully signed in!", user: rest });
+  return NextResponse.json({ msg: "successfully signed in!", user: rest });
 }
 
 export async function DELETE(req) {

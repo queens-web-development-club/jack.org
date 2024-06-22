@@ -16,7 +16,7 @@ export default function Members() {
     name: "",
     role: "",
     image: "",
-    type: "Events",
+    type: "President",
     testimonial: "",
   });
   const axios = useAxios();
@@ -56,7 +56,7 @@ export default function Members() {
         name: "",
         role: "",
         image: "",
-        type: "Marketing",
+        type: "President",
         testimonial: "",
       });
     } catch (error) {
