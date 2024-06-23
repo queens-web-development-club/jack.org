@@ -20,7 +20,7 @@ export async function POST(req) {
 
   const user = await User.findByIdAndUpdate(req.uid, {
     $push: { history: { year, description } },
-  }, {new: true}).exec();
+  }, {new: true}).lean().exec();
 
   const newHistory = user.history[user.history.length - 1];
 

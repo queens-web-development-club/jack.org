@@ -27,7 +27,7 @@ export default function Contact() {
       );
   };
   return (
-    <div className="w-screen bg-gradient-to-b from-[#202835] to-[#363636] px-5 md:px-16 pb-5 min-h-[calc(100vh-100px)]">
+    <div className="bg-gradient-to-b from-[#202835] to-[#363636] px-5 md:px-16 pb-5 min-h-[calc(100vh-100px)]">
       <div className="w-full text-white text-xl lg:text-2xl font-bold py-5 lg:px-24">
         Please wait patiently as it takes time for our members to process and
         reply to your messages. You should expect a response from us within 7

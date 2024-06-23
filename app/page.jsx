@@ -6,7 +6,7 @@ import Mission from "@/components/Mission/Mission";
 export default function Home() {
   return (
     <main className="bg-[#202835]">
-      <section className="relative bg-[url('/team.jpg')] bg-cover h-[calc(100vh-100px)] font-montserrat flex bg-no-repeat bg-center w-screen">
+      <section className="relative bg-[url('/team.jpg')] bg-cover h-[calc(100vh-100px)] font-montserrat flex bg-no-repeat bg-center">
         {/* Blue Overlay */}
         <div className="absolute inset-0 bg-[#013E76] opacity-70 z-0" />
 
