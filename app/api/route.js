@@ -13,6 +13,7 @@ export async function GET(req) {
   } catch (error) {
     return NextResponse.json({ msg: error.msg }, { status: error.status });
   }
+
   await connectDb();
   const user = await User.findById(req.uid).select("-password").lean().exec();
   if (!user) {

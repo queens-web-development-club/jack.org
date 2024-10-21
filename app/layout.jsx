@@ -10,10 +10,10 @@ export const metadata = {
   description: "Mental health organization at Queen's University",
 };
 
+export const revalidate = 60;
+
 export default async function RootLayout({ children }) {
-  const res = await fetch("https://jack-org.vercel.app/api/main", {
-    next: { revalidate: 60 },
-  });
+  const res = await fetch("https://jack-org.vercel.app/api/main");
 
   const data = await res.json();
 
