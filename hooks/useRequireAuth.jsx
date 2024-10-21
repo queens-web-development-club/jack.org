@@ -18,8 +18,6 @@ export default function useRequireAuth({ children }) {
     }
   }, [user, pathname]);
 
-  console.log(user)
-
   return pathname === "/admin" && user ? (
     <Loading />
   ) : !user && pathname.startsWith(restrictedPath) ? (
