@@ -13,9 +13,7 @@ export default function MainContextProvider({ children, data }) {
   const [main, setMain] = useState(null);
 
   useEffect(() => {
-
     setMain(data.user[0]);
-
   }, [data]);
 
   if (!main) {

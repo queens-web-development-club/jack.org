@@ -12,7 +12,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const res = await fetch("https://jack-org.vercel.app/api/main", {
-    next: { revalidate: 3600 },
+    next: { revalidate: 60 },
   });
 
   const data = await res.json();

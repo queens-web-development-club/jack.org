@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useAxios from "./useAxios";
 import { useUserContext } from "@/Context/UserContext";
 
@@ -17,6 +17,7 @@ export default function usePersistLogin({ children }) {
       } catch (error) {
         console.error(error);
       } finally {
+        if (ignore) return;
         setLoading(false);
       }
     })();
