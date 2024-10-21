@@ -10,13 +10,17 @@ export const metadata = {
   description: "Mental health organization at Queen's University",
 };
 
-// RootLayout component
 export default async function RootLayout({ children }) {
+  const res = await fetch("https://jack-org.vercel.app/api/main", {
+    next: { revalidate: 3600 },
+  });
+
+  const data = await res.json();
 
   return (
     <html lang="en">
       <body className="font-poppin">
-        <MainContextProvider>
+        <MainContextProvider data={data}>
           <NavBar />
           {children}
           <Footer />

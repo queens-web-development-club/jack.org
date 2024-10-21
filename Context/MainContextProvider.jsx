@@ -1,8 +1,6 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import axios from "axios";
 import Loading from "@/components/Loading";
 
 const MainContext = createContext();
@@ -11,41 +9,21 @@ export function useMainContext() {
   return useContext(MainContext);
 }
 
-export default function MainContextProvider({ children }) {
-  const pathname = usePathname();
+export default function MainContextProvider({ children, data }) {
   const [main, setMain] = useState(null);
-  const [mainLoading, setMainLoading] = useState(true);
 
   useEffect(() => {
-    let ignore = false;
-    if (pathname.startsWith("/admin")) {
-      setMainLoading(false);
-    }
-    const fetchMain = async () => {
-      try {
-        const { data } = await axios.get("/api/main");
-        if (ignore) return;
-        setMain(data.user[0]);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setMainLoading(false);
-      }
-    };
 
-    fetchMain();
+    setMain(data.user[0]);
 
-    return () => {
-      ignore = true;
-    };
-  }, []);
+  }, [data]);
 
-  if (mainLoading || !main) {
+  if (!main) {
     return <Loading />;
   }
 
   return (
-    <MainContext.Provider value={{ main, mainLoading, setMainLoading }}>
+    <MainContext.Provider value={{ main }}>
       {children}
     </MainContext.Provider>
   );
