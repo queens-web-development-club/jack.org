@@ -6,16 +6,27 @@ import { cookies } from "next/headers";
 import bcrypt from "bcrypt";
 import { verifyToken } from "@/lib/verifyToken";
 import Member from "@/models/memberModel";
+import { headers } from "next/headers";
+import jwt from "jsonwebtoken";
 
 export async function GET(req) {
-  try {
-    await verifyToken(req);
-  } catch (error) {
-    return NextResponse.json({ msg: error.msg }, { status: error.status });
+
+  const authHeader = headers().get("Authorization");
+
+  if (!authHeader?.startsWith("Bearer ")) {
+    return NextResponse.json({ msg: "Unauthorized" }, { status: 404 });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  const decoded = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
+
+  if(!decoded) {
+    return NextResponse.json({ msg: "Unauthorized" }, { status: 404 });
   }
 
   await connectDb();
-  const user = await User.findById(req.uid).select("-password").lean().exec();
+  const user = await User.findById(decoded.uid).select("-password").lean().exec();
   if (!user) {
     return NextResponse.json({ msg: "User not found" }, { status: 404 });
   }
