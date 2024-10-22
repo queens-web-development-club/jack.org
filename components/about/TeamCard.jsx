@@ -3,6 +3,7 @@ import { teamData } from "@/data/aboutData";
 import Member from "./Member";
 import Pres from "./Pres";
 import { useMemo } from "react";
+import { useMainContext } from "@/Context/MainContextProvider";
 
 export default function TeamCard() {
 
