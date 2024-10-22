@@ -5,13 +5,7 @@ import Examples from "@/components/about/Examples";
 import TeamCard from "@/components/about/TeamCard";
 
 export default async function About() {
-  const res = await fetch("https://jack-org.vercel.app/api/main", {
-    next: {
-      revalidate: 60,
-    },
-  });
 
-  const data = await res.json();
 
   return (
     <div className="flex bg-[#2F405B] flex-col !gap-2 md:!gap-2 lg:gap-2 pt-[40px] text-center">
@@ -43,7 +37,7 @@ export default async function About() {
           <Examples />
         </div>
         <main className="bg-[#2F405B] min-h-screen px-[10%] py-[5%]">
-          <TeamCard members={data.user[0].members}/>
+          <TeamCard />
         </main>
       </div>
     </div>

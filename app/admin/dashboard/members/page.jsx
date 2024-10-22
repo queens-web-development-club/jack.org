@@ -111,6 +111,7 @@ export default function Members() {
       alert(error.response.data.msg);
     } finally {
       setLoading(false);
+      setConfirm(false);
     }
   }
 
