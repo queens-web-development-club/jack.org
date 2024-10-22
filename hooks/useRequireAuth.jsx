@@ -10,6 +10,7 @@ export default function useRequireAuth({ children }) {
   const restrictedPath = "/admin/dashboard"
   const { user } = useUserContext();
   const pathname = usePathname();
+  
   useEffect(() => {
     if (!user) {
       router.push("/admin");

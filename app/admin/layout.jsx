@@ -1,7 +1,6 @@
 import React from "react";
 
 import RequireAuth from "@/hooks/useRequireAuth";
-import CheckLoading from "@/components/CheckLoading";
 import UserContextProvider from "@/Context/UserContext";
 import { cookies } from "next/headers";
 
@@ -10,7 +9,9 @@ export default async function Layout({ children }) {
   let data = null;
   if(cookieStore.get("jacked")){
     try {
+      // https://jack-org.vercel.app
       const res = await fetch("https://jack-org.vercel.app/api", {
+        cache: "no-store",
         headers: {
           Authorization: `Bearer ${cookieStore.get("jacked").value}`,
         },
@@ -23,7 +24,9 @@ export default async function Layout({ children }) {
 
   return (
     <UserContextProvider userData={data?.user}>
-      <RequireAuth>{children}</RequireAuth>
+      <RequireAuth>
+        {children}
+      </RequireAuth>
     </UserContextProvider>
   );
 }

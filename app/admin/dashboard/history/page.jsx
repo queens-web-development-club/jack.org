@@ -8,16 +8,19 @@ import GeneralEditModal from "@/components/modals/GeneralEditModal";
 import { MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 import DeleteModal from "@/components/modals/DeleteModal";
+import Loading from "@/components/Loading";
 
 export default function page() {
   const axios = useAxios();
-  const { user, setUser, setLoading } = useUserContext();
+  const { user, setUser } = useUserContext();
   const [info, setInfo] = useState({ year: "", description: "" });
   const [confirm, setConfirm] = useState(false);
   const [modalInfo, setModalInfo] = useState(null);
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   async function onSubmit(e) {
+    setLoading(true);
     e.preventDefault();
     for (const key in info) {
       if (!info[key]) {
@@ -25,7 +28,6 @@ export default function page() {
       }
     }
     try {
-      setLoading(true);
       const res = await axios.post("/history", info);
       const newUser = {
         ...user,
@@ -41,6 +43,10 @@ export default function page() {
     }
   }
 
+  if (loading) {
+    return <Loading />;
+  }
+
   async function editHistory(e) {
     e.preventDefault();
     for (const key in modalInfo) {
@@ -49,7 +55,6 @@ export default function page() {
       }
     }
     try {
-      setLoading(true);
       const res = await axios.put("/history", modalInfo);
       const newUser = {
         ...user,
@@ -61,14 +66,11 @@ export default function page() {
       setUser(newUser);
     } catch (error) {
       alert(error.response.data.msg);
-    } finally {
-      setLoading(false);
     }
   }
 
   async function deleteHistory() {
     try {
-      setLoading(true);
       await axios.delete(`/history`, { data: { _id: data._id } });
       const newUser = {
         ...user,
@@ -78,8 +80,6 @@ export default function page() {
     } catch (error) {
       alert(error);
       alert(error.response.data.msg);
-    } finally {
-      setLoading(false);
     }
   }
 

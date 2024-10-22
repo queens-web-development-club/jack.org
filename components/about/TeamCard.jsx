@@ -1,34 +1,26 @@
-"use client";
-
 import { teamData } from "@/data/aboutData";
 import Member from "./Member";
 import Pres from "./Pres";
-import { useMemo } from "react";
-import { useMainContext } from "@/Context/MainContextProvider";
-export default function TeamCard() {
-  const { main } = useMainContext();
 
-  const members = useMemo(
-    () =>
-      main.members.reduce((memberGroups, member) => {
-        if (!memberGroups[member.type]) {
-          memberGroups[member.type] = [];
-        }
-        memberGroups[member.type].push(member);
-        return memberGroups;
-      }, {}),
-    [main]
-  );
+export default async function TeamCard({members}) {
+
+  const membersD = members.reduce((memberGroups, member) => {
+    if (!memberGroups[member.type]) {
+      memberGroups[member.type] = [];
+    }
+    memberGroups[member.type].push(member);
+    return memberGroups;
+  }, {});
 
   return (
     <>
       <section className="flex justify-center items-center flex-col gap-[3rem]">
         <h2 className="text-4xl font-bold text-white">Co-Presidents</h2>
-        {members["President"].map((item, key) => (
+        {membersD["President"].map((item, key) => (
           <Pres item={item} key={key} num={key} />
         ))}
       </section>
-      {Object.keys(members).map((item, key) => {
+      {Object.keys(membersD).map((item, key) => {
         if (item === "President") {
           return;
         }
@@ -38,7 +30,7 @@ export default function TeamCard() {
             : item === "Events"
             ? "Events Intersectionality"
             : item === "Summit" && "Summit";
-        return <Member item={members[item]} title={title} key={key} />;
+        return <Member item={membersD[item]} title={title} key={key} />;
       })}
     </>
   );

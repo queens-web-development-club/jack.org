@@ -10,6 +10,7 @@ import { CiEdit } from "react-icons/ci";
 import Back from "@/components/Buttons/Back";
 import { MdDelete } from "react-icons/md";
 import DeleteModal from "@/components/modals/DeleteModal";
+import Loading from "@/components/Loading";
 
 export default function Members() {
   const [member, setMember] = useState({
@@ -23,9 +24,11 @@ export default function Members() {
   const [modalInfo, setModalInfo] = useState(null);
   const [confirm, setConfirm] = useState(false);
   const [data, setData] = useState(null);
-  const { user, setUser, setLoading } = useUserContext();
+  const { user, setUser } = useUserContext();
+  const [loading, setLoading] = useState(false);
 
   async function addMember(e) {
+    setLoading(true);
     e.preventDefault();
     for (const key in member) {
       if (member.type === "President") {
@@ -45,7 +48,6 @@ export default function Members() {
     formData.append("type", member.type);
     formData.append("testimonial", member.testimonial);
     try {
-      setLoading(true);
       const res = await axios.post("/members", formData);
       setUser((prev) => ({
         ...prev,
@@ -67,6 +69,7 @@ export default function Members() {
   }
 
   async function editMember(e) {
+    setLoading(true);
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", modalInfo.name);
@@ -77,7 +80,6 @@ export default function Members() {
     formData.append("_id", modalInfo._id);
     formData.append("currentImage", modalInfo.currentImage);
     try {
-      setLoading(true);
       setModalInfo(null);
       const res = await axios.put(`/members`, formData);
       setUser((prev) => ({
@@ -96,8 +98,8 @@ export default function Members() {
   }
 
   async function deleteMember() {
+    setLoading(true);
     try {
-      setLoading(true);
       await axios.delete(`/members`, {
         data: { id: data._id, currentPhoto: data.image },
       });
@@ -123,6 +125,10 @@ export default function Members() {
       }, {}),
     [user]
   );
+
+    if (loading) {
+      return <Loading />;
+    }
 
   return (
     <main className="w-full min-h-[calc(100vh-100px)] bg-[#202835] p-[2rem] flex flex-col gap-[1rem]">

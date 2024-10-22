@@ -6,15 +6,17 @@ import { useUserContext } from "@/Context/UserContext";
 import GeneralEditModal from "@/components/modals/GeneralEditModal";
 import { CiEdit } from "react-icons/ci";
 import Link from "next/link";
+import Loading from "@/components/Loading";
 
 export default function Links() {
   const [modalInfo, setModalInfo] = useState(null);
   const axios = useAxios();
-  const { user, setUser, setLoading } = useUserContext();
+  const { user, setUser } = useUserContext();
+  const [loading, setLoading] = useState(false);
 
   async function editLink() {
+    setLoading(true);
     try {
-      setLoading(true);
       await axios.put("/teamLinks", modalInfo);
       setUser((prev) => {
         const teamLinks = [...prev.teamLinks];
@@ -26,6 +28,10 @@ export default function Links() {
     } finally {
       setLoading(false);
     }
+  }
+
+  if(loading){
+    return <Loading />
   }
 
   return (

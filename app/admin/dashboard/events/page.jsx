@@ -8,6 +8,7 @@ import GeneralEditModal from "@/components/modals/GeneralEditModal";
 import DeleteModal from "@/components/modals/DeleteModal";
 import { MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
+import Loading from "@/components/Loading";
 
 export default function Events() {
   const [info, setInfo] = useState({
@@ -20,12 +21,14 @@ export default function Events() {
   const [confirm, setConfirm] = useState(false);
   const [modalInfo, setModalInfo] = useState(null);
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const { user, setUser, setLoading } = useUserContext();
+  const { user, setUser } = useUserContext();
 
   const axios = useAxios();
 
   async function onSubmit(e) {
+    setLoading(true);
     e.preventDefault();
     for (const key in info) {
       if (!info[key]) {
@@ -33,7 +36,6 @@ export default function Events() {
       }
     }
     try {
-      setLoading(true);
       const res = await axios.post("/events", info);
 
       setUser((prev) => ({
@@ -56,7 +58,7 @@ export default function Events() {
 
   async function deleteEvent() {
     try {
-      setLoading(true);
+     
       await axios.delete(`/events`, { data: { _id: data._id } });
       setUser((prev) => ({
         ...prev,
@@ -64,14 +66,11 @@ export default function Events() {
       }));
     } catch (error) {
       alert(error.response.data.msg);
-    } finally {
-      setLoading(false);
     }
   }
 
   async function editEvent() {
     try {
-      setLoading(true);
       await axios.put("/events", modalInfo);
       setUser((prev) => ({
         ...prev,
@@ -81,10 +80,12 @@ export default function Events() {
       }));
     } catch (error) {
       alert(error.response.data.msg);
-    } finally {
-      setLoading(false);
     }
   }
+
+    if (loading) {
+      return <Loading />;
+    }
 
   return (
     <main className="w-full min-h-[calc(100vh-100px)] bg-[#202835] p-[2rem] flex flex-col gap-[1rem]">
